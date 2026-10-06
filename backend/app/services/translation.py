@@ -12,6 +12,7 @@ Translator (TRANSLATOR_PROVIDER):
 
 import hashlib
 import html
+import logging
 import re
 from concurrent.futures import ThreadPoolExecutor
 
@@ -25,6 +26,7 @@ from app.config import get_settings
 from app.models import Translation
 
 SOURCE_LANGUAGE = "eng_Latn"
+log = logging.getLogger("solara.translation")
 
 # App codes are FLORES-200 codes (NLLB); `iso` is the same language as an ISO 639-1 code (MyMemory, Azure).
 # Right-to-left scripts such as Urdu are left out until the app supports RTL.
@@ -168,7 +170,10 @@ def _mymemory_one(client: httpx.Client, text: str, language: str) -> str:
         if email:
             params["de"] = email  # raises the free limit from 5,000 to 50,000 characters a day
         response = client.get(MYMEMORY_URL, params=params)
-        body = response.json()
+        try:
+            body = response.json()
+        except ValueError as exc:
+            raise ValueError(f"MyMemory answered HTTP {response.status_code}: {response.text[:200]!r}") from exc
         translated = html.unescape(str((body.get("responseData") or {}).get("translatedText") or ""))
         status_code = str(body.get("responseStatus"))
         if status_code == "429" or body.get("quotaFinished") or "MYMEMORY WARNING" in translated:
@@ -251,7 +256,13 @@ def provider() -> str:
 
 def call_translator(texts: list[str], language: str) -> list[str]:
     """Translates texts into `language` (an app code). Raises 503 when the translator can't."""
-    return {"mymemory": _mymemory, "azure": _azure, "nllb": _nllb}[provider()](texts, language)
+    name = provider()
+    try:
+        return {"mymemory": _mymemory, "azure": _azure, "nllb": _nllb}[name](texts, language)
+    except HTTPException as exc:
+        # The app only sees a short message; the real reason goes to the server log (Render → Logs).
+        log.warning("Translator %s failed (%s): %r", name, exc.detail, exc.__cause__)
+        raise
 
 
 # ── Cache ────────────────────────────────────────────────────────────────────

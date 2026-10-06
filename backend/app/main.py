@@ -1,4 +1,5 @@
 import logging
+import os
 import re
 from contextlib import asynccontextmanager
 
@@ -50,7 +51,10 @@ def job_photo(name: str, db: Session = Depends(get_db)):
 
 @app.get(f"{API_PREFIX}/health")
 def health():
-    return {"success": True, "message": "ok"}
+    # `commit` shows which version Render is running; `translator` which translation service is in use.
+    from app.services.translation import provider
+
+    return {"success": True, "message": "ok", "commit": os.getenv("RENDER_GIT_COMMIT", "local")[:7], "translator": provider()}
 
 
 # ── Every error has the same shape as a success: { success: false, message } ──
