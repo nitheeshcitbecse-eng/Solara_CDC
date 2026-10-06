@@ -53,6 +53,7 @@ def test_unknown_language_is_rejected(client, translator):
 
 
 def test_translator_offline_gives_a_clear_error(client, monkeypatch):
+    monkeypatch.setattr(get_settings(), "translator_provider", "nllb")
     monkeypatch.setattr(get_settings(), "translator_url", "http://127.0.0.1:9")
     monkeypatch.setattr(get_settings(), "translator_timeout", 2.0)
     response = client.post(f"{API}/i18n/translate", json={"language": "tam_Taml", "texts": ["Login"]})
@@ -120,7 +121,8 @@ def test_azure_free_quota_used_up(client, http, monkeypatch):
     assert response.json()["message"] == "This month's free translation limit has been reached"
 
 
-def test_nllb_is_told_the_language_of_typed_text(client, http):
+def test_nllb_is_told_the_language_of_typed_text(client, http, monkeypatch):
+    monkeypatch.setattr(get_settings(), "translator_provider", "nllb")
     body = client.post(f"{API}/i18n/translate", json={"language": "tam_Taml", "texts": ["Login", "घर का काम", "வீட்டு வேலை"]}).json()
     assert body["translations"] == {
         "Login": "eng_Latn>tam_Taml:Login",
@@ -128,3 +130,60 @@ def test_nllb_is_told_the_language_of_typed_text(client, http):
         "வீட்டு வேலை": "வீட்டு வேலை",  # already Tamil
     }
     assert [(call["json"]["source"], call["json"]["texts"]) for call in http.calls] == [("eng_Latn", ["Login"]), ("hin_Deva", ["घर का काम"])]
+
+
+# ── MyMemory (the default: free, no key) ─────────────────────────────────────
+
+
+@pytest.fixture
+def mymemory(monkeypatch):
+    """Fakes MyMemory's GET API; `mymemory.reply(params)` returns the JSON body."""
+
+    class Fake:
+        calls: list[dict] = []
+
+        @staticmethod
+        def reply(params):
+            source, target = params["langpair"].split("|")
+            return {"responseStatus": 200, "responseData": {"translatedText": f"{target}:{params['q']} &amp; co"}}
+
+    class Client:
+        def __init__(self, timeout=None):
+            pass
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *exc):
+            return False
+
+        def get(self, url, params=None):
+            Fake.calls.append(params)
+            return FakeResponse(200, Fake.reply(params))
+
+    monkeypatch.setattr("app.services.translation.httpx.Client", Client)
+    monkeypatch.setattr(get_settings(), "translator_provider", "auto")
+    monkeypatch.setattr(get_settings(), "azure_translator_key", "")
+    return Fake
+
+
+def test_mymemory_is_the_default_and_needs_no_key(client, mymemory, monkeypatch):
+    monkeypatch.setattr(get_settings(), "mymemory_email", "team@example.com")
+    body = client.post(f"{API}/i18n/translate", json={"language": "tam_Taml", "texts": ["Find work", "घर का काम", "வேலை"]}).json()
+    assert body["translations"] == {"Find work": "ta:Find work & co", "घर का काम": "ta:घर का काम & co", "வேலை": "வேலை"}
+    pairs = sorted((call["langpair"], call["q"], call.get("de")) for call in mymemory.calls)
+    assert pairs == [("en|ta", "Find work", "team@example.com"), ("hi|ta", "घर का काम", "team@example.com")]
+
+
+def test_mymemory_long_text_is_sent_in_parts(client, mymemory):
+    text = "Water the plants every morning and keep the garden clean. " * 15
+    body = client.post(f"{API}/i18n/translate", json={"language": "hin_Deva", "texts": [text.strip()]}).json()
+    assert len(mymemory.calls) > 1 and all(len(call["q"].encode()) <= 480 for call in mymemory.calls)
+    assert body["translations"][text.strip()].startswith("hi:Water the plants")
+
+
+def test_mymemory_daily_limit(client, mymemory):
+    mymemory.reply = staticmethod(lambda params: {"responseStatus": 429, "responseData": {"translatedText": "MYMEMORY WARNING: YOU USED ALL AVAILABLE FREE TRANSLATIONS FOR TODAY"}})
+    response = client.post(f"{API}/i18n/translate", json={"language": "tam_Taml", "texts": ["Login"]})
+    assert response.status_code == 503
+    assert response.json()["message"] == "Today's free translation limit has been reached"

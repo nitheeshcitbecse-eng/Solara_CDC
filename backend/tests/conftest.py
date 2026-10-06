@@ -10,6 +10,15 @@ _tmp = Path(tempfile.mkdtemp(prefix="solara-tests-"))
 os.environ["DATABASE_URL"] = f"sqlite:///{_tmp / 'test.db'}"
 os.environ["UPLOAD_DIR"] = str(_tmp / "uploads")
 os.environ["JWT_SECRET"] = "test-secret-with-enough-length-1234567890"
+# Don't let backend/.env (production values, real keys) leak into the tests.
+os.environ.update(
+    APP_ENV="development",
+    SEED_ON_START="false",
+    ADMIN_PASSWORD="Solara@123",
+    TRANSLATOR_PROVIDER="auto",
+    AZURE_TRANSLATOR_KEY="",
+    MYMEMORY_EMAIL="",
+)
 
 from fastapi.testclient import TestClient  # noqa: E402
 

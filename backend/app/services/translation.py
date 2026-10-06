@@ -3,12 +3,17 @@
 The backend is the only client of the translator and the only one that touches the database: the
 translator never sees the database, and the app never talks to the translator.
 
-Translator: Azure AI Translator when AZURE_TRANSLATOR_KEY is set (free F0 tier, 2M characters a month,
-never billed), otherwise the local NLLB-200 service at TRANSLATOR_URL (../translator).
+Translator (TRANSLATOR_PROVIDER):
+- "mymemory" (default): MyMemory, free, no account or key; 50,000 characters a day with MYMEMORY_EMAIL set.
+- "azure": Azure AI Translator, free F0 tier (2M characters a month); used automatically when
+  AZURE_TRANSLATOR_KEY is set.
+- "nllb": the local NLLB-200 service at TRANSLATOR_URL (../translator), for working offline.
 """
 
 import hashlib
+import html
 import re
+from concurrent.futures import ThreadPoolExecutor
 
 import httpx
 from fastapi import HTTPException
@@ -21,24 +26,24 @@ from app.models import Translation
 
 SOURCE_LANGUAGE = "eng_Latn"
 
-# App codes are FLORES-200 codes (NLLB); `azure` is the same language in Azure's codes.
+# App codes are FLORES-200 codes (NLLB); `iso` is the same language as an ISO 639-1 code (MyMemory, Azure).
 # Right-to-left scripts such as Urdu are left out until the app supports RTL.
 LANGUAGES = [
-    {"code": "eng_Latn", "name": "English", "nativeName": "English", "azure": "en"},
-    {"code": "hin_Deva", "name": "Hindi", "nativeName": "हिन्दी", "azure": "hi"},
-    {"code": "tam_Taml", "name": "Tamil", "nativeName": "தமிழ்", "azure": "ta"},
-    {"code": "tel_Telu", "name": "Telugu", "nativeName": "తెలుగు", "azure": "te"},
-    {"code": "kan_Knda", "name": "Kannada", "nativeName": "ಕನ್ನಡ", "azure": "kn"},
-    {"code": "mal_Mlym", "name": "Malayalam", "nativeName": "മലയാളം", "azure": "ml"},
-    {"code": "ben_Beng", "name": "Bengali", "nativeName": "বাংলা", "azure": "bn"},
-    {"code": "mar_Deva", "name": "Marathi", "nativeName": "मराठी", "azure": "mr"},
-    {"code": "guj_Gujr", "name": "Gujarati", "nativeName": "ગુજરાતી", "azure": "gu"},
-    {"code": "pan_Guru", "name": "Punjabi", "nativeName": "ਪੰਜਾਬੀ", "azure": "pa"},
-    {"code": "ory_Orya", "name": "Odia", "nativeName": "ଓଡ଼ିଆ", "azure": "or"},
-    {"code": "asm_Beng", "name": "Assamese", "nativeName": "অসমীয়া", "azure": "as"},
+    {"code": "eng_Latn", "name": "English", "nativeName": "English", "iso": "en"},
+    {"code": "hin_Deva", "name": "Hindi", "nativeName": "हिन्दी", "iso": "hi"},
+    {"code": "tam_Taml", "name": "Tamil", "nativeName": "தமிழ்", "iso": "ta"},
+    {"code": "tel_Telu", "name": "Telugu", "nativeName": "తెలుగు", "iso": "te"},
+    {"code": "kan_Knda", "name": "Kannada", "nativeName": "ಕನ್ನಡ", "iso": "kn"},
+    {"code": "mal_Mlym", "name": "Malayalam", "nativeName": "മലയാളം", "iso": "ml"},
+    {"code": "ben_Beng", "name": "Bengali", "nativeName": "বাংলা", "iso": "bn"},
+    {"code": "mar_Deva", "name": "Marathi", "nativeName": "मराठी", "iso": "mr"},
+    {"code": "guj_Gujr", "name": "Gujarati", "nativeName": "ગુજરાતી", "iso": "gu"},
+    {"code": "pan_Guru", "name": "Punjabi", "nativeName": "ਪੰਜਾਬੀ", "iso": "pa"},
+    {"code": "ory_Orya", "name": "Odia", "nativeName": "ଓଡ଼ିଆ", "iso": "or"},
+    {"code": "asm_Beng", "name": "Assamese", "nativeName": "অসমীয়া", "iso": "as"},
 ]
 LANGUAGE_CODES = {language["code"] for language in LANGUAGES}
-AZURE_CODES = {language["code"]: language["azure"] for language in LANGUAGES}
+ISO_CODES = {language["code"]: language["iso"] for language in LANGUAGES}
 
 # Text people typed in an Indian script (job posts, chat…). English UI text has none of these.
 INDIAN_SCRIPT = re.compile(r"[ऀ-෿]")
@@ -77,7 +82,7 @@ def _azure_batches(texts: list[str]):
 
 def _azure_request(texts: list[str], language: str, source: str | None) -> list[str]:
     settings = get_settings()
-    params = {"api-version": "3.0", "to": AZURE_CODES[language], "textType": "plain"}
+    params = {"api-version": "3.0", "to": ISO_CODES[language], "textType": "plain"}
     if source:
         params["from"] = source  # English UI text; otherwise Azure detects the language
     headers = {"Ocp-Apim-Subscription-Key": settings.azure_translator_key}
@@ -116,6 +121,72 @@ def _azure(texts: list[str], language: str) -> list[str]:
                 results[index] = translated
             done += len(batch)
     return [results[i] for i in range(len(texts))]
+
+
+# ── MyMemory (free, no key) ──────────────────────────────────────────────────
+
+MYMEMORY_URL = "https://api.mymemory.translated.net/get"
+MYMEMORY_MAX_BYTES = 480  # MyMemory accepts up to 500 bytes per text
+MYMEMORY_WORKERS = 8
+
+
+class QuotaReached(Exception):
+    pass
+
+
+def _pieces(text: str) -> list[str]:
+    """Splits text into parts of at most MYMEMORY_MAX_BYTES: by sentence, then by word."""
+    if len(text.encode("utf-8")) <= MYMEMORY_MAX_BYTES:
+        return [text]
+    parts: list[str] = []
+    for sentence in re.findall(r"[^.!?।\n]+[.!?।]*\s*|\n+", text):
+        current = ""
+        for word in sentence.split(" "):
+            candidate = f"{current} {word}" if current else word
+            if current and len(candidate.encode("utf-8")) > MYMEMORY_MAX_BYTES:
+                parts.append(current)
+                current = word
+            else:
+                current = candidate
+        if current.strip():
+            parts.append(current)
+    return parts or [text]
+
+
+def _mymemory_one(client: httpx.Client, text: str, language: str) -> str:
+    source_code = _script_language(text)
+    if source_code == language:
+        return text
+    source, target = ISO_CODES[source_code], ISO_CODES[language]
+    email = get_settings().mymemory_email
+    out = []
+    for piece in _pieces(text):
+        if not piece.strip():
+            out.append(piece)
+            continue
+        params = {"q": piece.strip(), "langpair": f"{source}|{target}"}
+        if email:
+            params["de"] = email  # raises the free limit from 5,000 to 50,000 characters a day
+        response = client.get(MYMEMORY_URL, params=params)
+        body = response.json()
+        translated = html.unescape(str((body.get("responseData") or {}).get("translatedText") or ""))
+        status_code = str(body.get("responseStatus"))
+        if status_code == "429" or body.get("quotaFinished") or "MYMEMORY WARNING" in translated:
+            raise QuotaReached
+        if status_code != "200" or not translated:
+            raise ValueError(f"MyMemory answered {status_code}")
+        out.append(translated)
+    return " ".join(part.strip() for part in out if part.strip())
+
+
+def _mymemory(texts: list[str], language: str) -> list[str]:
+    try:
+        with httpx.Client(timeout=get_settings().translator_timeout) as client, ThreadPoolExecutor(MYMEMORY_WORKERS) as pool:
+            return list(pool.map(lambda text: _mymemory_one(client, text, language), texts))
+    except QuotaReached as exc:
+        raise _unavailable("Today's free translation limit has been reached") from exc
+    except (httpx.HTTPError, ValueError, KeyError) as exc:
+        raise _unavailable() from exc
 
 
 # ── Local NLLB-200 service (../translator) ───────────────────────────────────
@@ -171,11 +242,16 @@ def _nllb(texts: list[str], language: str) -> list[str]:
     return [results[i] for i in range(len(texts))]
 
 
+def provider() -> str:
+    settings = get_settings()
+    if settings.translator_provider in ("mymemory", "azure", "nllb"):
+        return settings.translator_provider
+    return "azure" if settings.azure_translator_key else "mymemory"  # "auto"
+
+
 def call_translator(texts: list[str], language: str) -> list[str]:
     """Translates texts into `language` (an app code). Raises 503 when the translator can't."""
-    if get_settings().azure_translator_key:
-        return _azure(texts, language)
-    return _nllb(texts, language)
+    return {"mymemory": _mymemory, "azure": _azure, "nllb": _nllb}[provider()](texts, language)
 
 
 # ── Cache ────────────────────────────────────────────────────────────────────

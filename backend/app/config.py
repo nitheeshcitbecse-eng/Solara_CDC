@@ -34,8 +34,11 @@ class Settings(BaseSettings):
     admin_email: str = "owner@solara.app"
     admin_password: str = "Solara@123"
 
-    # Translation. With AZURE_TRANSLATOR_KEY set, Azure AI Translator (free F0 tier: 2M characters a month)
-    # is used; without it, the local NLLB-200 service in ../translator. Only this backend talks to either.
+    # Translation (only this backend talks to the translator). TRANSLATOR_PROVIDER: "auto" (Azure when
+    # AZURE_TRANSLATOR_KEY is set, otherwise MyMemory), "mymemory", "azure" or "nllb" (local ../translator).
+    translator_provider: str = "auto"
+    # MyMemory is free without any account; an email raises its limit from 5,000 to 50,000 characters a day.
+    mymemory_email: str = ""
     azure_translator_key: str = ""
     azure_translator_region: str = ""  # the resource's region, e.g. "centralindia" (empty for a global resource)
     azure_translator_endpoint: str = "https://api.cognitive.microsofttranslator.com"

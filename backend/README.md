@@ -34,16 +34,19 @@ API docs: http://localhost:4000/docs. Tests (use a temporary SQLite database, no
 The app's own text, job posts, notifications and chat are shown in the user's language. Every translation is
 cached in the `translations` table, so each text is translated once per language.
 
-**Azure AI Translator (recommended):** free F0 tier, 2 million characters a month, and it is never billed (it
-just stops until the next month). Good quality for all 11 Indian languages in the app, no server needed.
+**MyMemory (default, nothing to set up):** free, no account and no key. 5,000 characters a day, or 50,000 with
+`MYMEMORY_EMAIL=<your email>` (no sign-up). Good quality for all 11 Indian languages in the app.
+
+**Azure AI Translator (optional upgrade):** free F0 tier, 2 million characters a month, and it is never billed (it
+just stops until the next month). Used automatically once `AZURE_TRANSLATOR_KEY` is set.
 
 1. Sign in at https://portal.azure.com (a free account; students can use *Azure for Students*, no card).
 2. *Create a resource* → **Translator** → Pricing tier **Free F0**, region **Central India** → Create.
 3. Open it → *Keys and Endpoint* → copy **KEY 1** and the **Location/Region**.
 4. In `backend/.env`: `AZURE_TRANSLATOR_KEY=<key 1>` and `AZURE_TRANSLATOR_REGION=centralindia`. Restart the backend.
 
-**Offline alternative:** leave the key empty and run the NLLB-200 service in `../translator` (needs about 3 GB RAM,
-non-commercial licence). Without either, the app stays in English.
+**Offline alternative:** `TRANSLATOR_PROVIDER=nllb` and run the NLLB-200 service in `../translator` (needs about
+3 GB RAM, non-commercial licence). If the translator can't be reached, the app shows English.
 
 After switching translators, `python scripts\clear_translations.py` empties the cache so texts are translated again.
 

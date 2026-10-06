@@ -14,9 +14,10 @@ takes ~1 minute to wake (the app shows "Connecting to the server…"); Azure 2M 
 2. *Connect* → copy the connection string (`postgresql://…neon.tech/neondb?sslmode=require…`).
    Tables, default sectors and the admin account are created automatically when the backend starts.
 
-## 2. Translator: Azure (optional, without it the app stays in English)
+## 2. Translator: nothing to do
 
-Follow "Languages (free)" in `backend/README.md` → you get a key and the region `centralindia`.
+The free MyMemory translator works without an account. Optional: set `MYMEMORY_EMAIL` (your email) in Render for
+50,000 instead of 5,000 characters a day, or add an Azure key (see "Languages (free)" in `backend/README.md`).
 
 ## 3. Backend: Render
 
@@ -25,7 +26,7 @@ Follow "Languages (free)" in `backend/README.md` → you get a key and the regio
 3. Fill in the values it asks for:
    - `DATABASE_URL`: the Neon string from step 1 (as is; `postgresql://` is fine)
    - `ADMIN_PASSWORD`: a strong password (the default is refused in production)
-   - `AZURE_TRANSLATOR_KEY`: the key from step 2, or leave empty
+   - `MYMEMORY_EMAIL` (optional) and `AZURE_TRANSLATOR_KEY` (optional): see step 2
 4. Wait for the deploy, then open `https://<your-service>.onrender.com/api/v1/health` → `{"success":true,…}`.
    The admin logs in with `owner@solara.app` and that password.
 

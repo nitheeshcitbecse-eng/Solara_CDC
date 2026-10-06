@@ -25,7 +25,9 @@ services:
         value: owner@solara.app
       - key: ADMIN_PASSWORD         # must not be the default Solara@123 in production
         sync: false
-      - key: AZURE_TRANSLATOR_KEY
+      - key: MYMEMORY_EMAIL         # optional: free translator limit 5,000 → 50,000 characters a day
+        sync: false
+      - key: AZURE_TRANSLATOR_KEY   # optional: use Azure instead of MyMemory
         sync: false
       - key: AZURE_TRANSLATOR_REGION
         value: centralindia
