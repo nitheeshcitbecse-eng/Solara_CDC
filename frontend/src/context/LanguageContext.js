@@ -1,6 +1,7 @@
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import api from "../api/api";
+import directTranslate from "../lib/directTranslate";
 
 // The app is written in English. Other languages come from the backend (POST /i18n/translate), which
 // asks its translator (Azure AI Translator, or NLLB-200 locally) and caches every translation in the
@@ -57,23 +58,37 @@ export function LanguageProvider({ children }) {
     const texts = [...pending.current];
     pending.current.clear();
 
+    const merge = (translations) => {
+      if (languageRef.current !== target) return;
+      setDictionary((previous) => {
+        const next = { ...previous, ...translations };
+        save(target, next);
+        return next;
+      });
+    };
+
     for (let start = 0; start < texts.length; start += BATCH) {
       const chunk = texts.slice(start, start + BATCH);
       try {
         const { data } = await api.post("/i18n/translate", { language: target, texts: chunk }, { timeout: 180000, quiet: true });
-        if (data.success && languageRef.current === target) {
+        if (data.success) {
           setOffline(false);
-          setDictionary((previous) => {
-            const next = { ...previous, ...data.translations };
-            save(target, next);
-            return next;
-          });
+          merge(data.translations);
         }
       } catch (err) {
-        // Show English for now and allow these texts to be asked for again later.
-        chunk.forEach((text) => requested.current.delete(text));
-        if (languageRef.current === target) setOffline(true);
         console.log("Translate Error:", err.response?.data?.message || err.message);
+        // The backend couldn't translate: the phone asks the free translator itself.
+        let found = {};
+        try {
+          found = await directTranslate(chunk, target);
+        } catch (directErr) {
+          console.log("Direct Translate Error:", directErr.message);
+        }
+        merge(found);
+        // Whatever is still missing shows in English and may be asked for again later.
+        const missing = chunk.filter((text) => found[text] === undefined);
+        missing.forEach((text) => requested.current.delete(text));
+        if (languageRef.current === target) setOffline(missing.length > 0);
       }
     }
   }, []);
