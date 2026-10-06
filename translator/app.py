@@ -23,7 +23,7 @@ from pydantic import BaseModel, Field
 from starlette.exceptions import HTTPException
 
 MODEL_NAME = os.getenv("NLLB_MODEL", "facebook/nllb-200-distilled-600M")
-BATCH_SIZE = int(os.getenv("NLLB_BATCH_SIZE", "16"))
+BATCH_SIZE = int(os.getenv("NLLB_BATCH_SIZE", "32"))
 NUM_BEAMS = int(os.getenv("NLLB_NUM_BEAMS", "2"))
 MAX_TOKENS = 256
 

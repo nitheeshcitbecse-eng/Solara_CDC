@@ -1,4 +1,4 @@
-/* global jest, describe, test, expect, beforeEach, afterEach */
+/* global jest, describe, test, expect, beforeEach, afterEach, afterAll */
 // Renders every screen, for every kind of user, with real API responses recorded from the backend
 // (backend/scripts/export_app_fixtures.py). Fails on crashes, React errors/warnings logged with
 // console.error, text rendered outside <Text> (a crash on the phone), and GET calls with no response.
@@ -8,6 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthContext } from "../src/context/AuthContext";
+import { LanguageContext } from "../src/context/LanguageContext";
 import fixtures from "./fixtures.json";
 
 // ── API mock: answers from the recorded fixtures of the current role ─────────
@@ -114,6 +115,7 @@ const adminScreens = () => [
   ["TakeDownJobsScreen", S("Admin/ModerateJobs/TakeDownJobsScreen")],
   ["ReportsScreen", S("Admin/ReportsScreen")],
   ["AuditLogsScreen", S("Admin/AuditLogsScreen")],
+  ["ManageAdminsScreen", S("Admin/ManageAdminsScreen")],
   ["ShortlistApprovalsScreen", S("Admin/ShortlistApprovalsScreen")],
   ...[["seeker", "normal"], ["seeker", "premium"], ["hirer", "normal"], ["hirer", "premium"]].map(([role, tier]) => [
     `ViewUsersScreen ${tier} ${role}`,
@@ -138,6 +140,25 @@ const publicScreens = () => [
 const Stack = createNativeStackNavigator();
 const metrics = { frame: { x: 0, y: 0, width: 390, height: 844 }, insets: { top: 47, left: 0, right: 0, bottom: 34 } };
 
+// Screens render in "Tamil" with no translations yet, so they show English (the assertions below
+// stay the same) while every text that would be translated is collected. With
+// COLLECT_UI_STRINGS=<file> the list is saved: scripts/build-translations uses it to bundle
+// ready-made translations into the app.
+const uiStrings = new Set();
+const language = {
+  language: "tam_Taml",
+  languages: [],
+  dictionary: {},
+  offline: false,
+  request: (text) => uiStrings.add(text),
+  setLanguage: async () => {},
+};
+
+afterAll(() => {
+  if (!process.env.COLLECT_UI_STRINGS) return;
+  require("fs").writeFileSync(process.env.COLLECT_UI_STRINGS, JSON.stringify([...uiStrings].sort(), null, 1));
+});
+
 function renderScreen(Component, params, user) {
   const auth = {
     user,
@@ -154,6 +175,7 @@ function renderScreen(Component, params, user) {
   };
   return render(
     <SafeAreaProvider initialMetrics={metrics}>
+      <LanguageContext.Provider value={language}>
       <AuthContext.Provider value={auth}>
         <NavigationContainer>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -161,6 +183,7 @@ function renderScreen(Component, params, user) {
           </Stack.Navigator>
         </NavigationContainer>
       </AuthContext.Provider>
+      </LanguageContext.Provider>
     </SafeAreaProvider>
   );
 }

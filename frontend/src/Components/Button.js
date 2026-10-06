@@ -73,6 +73,6 @@ export default function Button({
 
 const styles = StyleSheet.create({
   button: { borderRadius: radius.md, borderWidth: 1.5, alignItems: "center", justifyContent: "center" },
-  row: { flexDirection: "row", alignItems: "center", gap: 8 },
-  text: { fontFamily: fonts.bold },
+  row: { flexDirection: "row", alignItems: "center", gap: 8, maxWidth: "100%" }, // lets long (translated) labels wrap
+  text: { fontFamily: fonts.bold, textAlign: "center" },
 });

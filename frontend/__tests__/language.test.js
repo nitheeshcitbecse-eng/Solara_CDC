@@ -8,6 +8,8 @@ import Text from "../src/Components/Text";
 import SearchBox from "../src/Components/SearchBox";
 import { LanguageProvider, splitForTranslation, useLanguage } from "../src/context/LanguageContext";
 
+// Live translation is tested here, so the bundled translations are left empty.
+jest.mock("../src/i18n/tam_Taml.json", () => ({}));
 jest.mock("../src/api/api", () => ({
   __esModule: true,
   default: {

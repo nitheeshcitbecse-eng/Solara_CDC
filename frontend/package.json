@@ -33,7 +33,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "test": "jest"
+    "test": "jest",
+    "i18n:collect": "node scripts/collect-ui-strings.js"
   },
   "private": true,
   "devDependencies": {

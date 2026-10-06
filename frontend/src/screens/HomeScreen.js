@@ -80,9 +80,9 @@ const styles = StyleSheet.create({
   featureRow: { flexDirection: "row", alignItems: "center", gap: 12 },
   featureText: { flex: 1, fontFamily: fonts.medium, color: "#fff", fontSize: 15 },
   primaryButton: { flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, backgroundColor: "#fff", paddingVertical: 15, borderRadius: 14 },
-  primaryButtonText: { color: colors.primaryDark, fontSize: 18, fontFamily: fonts.bold },
+  primaryButtonText: { color: colors.primaryDark, fontSize: 18, fontFamily: fonts.bold, textAlign: "center" },
   secondaryButton: { flexDirection: "row", justifyContent: "center", alignItems: "center", gap: 10, borderWidth: 1.5, borderColor: "#fff", paddingVertical: 15, borderRadius: 14, marginTop: 14, backgroundColor: "rgba(255,255,255,0.08)" },
-  secondaryButtonText: { color: "#fff", fontSize: 18, fontFamily: fonts.bold },
+  secondaryButtonText: { color: "#fff", fontSize: 18, fontFamily: fonts.bold, textAlign: "center" },
   loginText: { fontFamily: fonts.medium, color: "#e7dccf", fontSize: 15, textAlign: "center", marginTop: 20 },
   loginLink: { color: "#fff", fontFamily: fonts.bold },
 });

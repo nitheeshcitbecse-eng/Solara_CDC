@@ -8,6 +8,8 @@ import Text from "../src/Components/Text";
 import { LanguageProvider, useLanguage } from "../src/context/LanguageContext";
 import directTranslate from "../src/lib/directTranslate";
 
+// Live translation is tested here, so the bundled translations are left empty.
+jest.mock("../src/i18n/hin_Deva.json", () => ({}));
 jest.mock("../src/api/api", () => ({
   __esModule: true,
   default: {

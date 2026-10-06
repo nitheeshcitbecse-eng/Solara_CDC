@@ -59,6 +59,10 @@ const roleBoxes = {
     { title: "Moderate Jobs", subtitle: "Review & take down", icon: "fact-check", screen: "ModerateJobsScreen", badgeKey: "pendingJobs" },
     { title: "Reports", subtitle: "User complaints", icon: "flag", screen: "ReportsScreen", badgeKey: "openReports" },
     { title: "Sectors", subtitle: "Job categories", icon: "category", screen: "ManageSectorsScreen" },
+  ],
+  // The super admin (owner) also manages the admins and sees what every admin did.
+  superAdmin: [
+    { title: "Admins", subtitle: "Add or remove admins", icon: "admin-panel-settings", screen: "ManageAdminsScreen" },
     { title: "Audit Logs", subtitle: "Every admin action", icon: "history", screen: "AuditLogsScreen" },
   ],
 };
@@ -143,7 +147,7 @@ export default function UserScreen({ navigation }) {
     navigation.navigate(box.screen);
   };
 
-  const boxes = isAdmin ? roleBoxes.admin : roleBoxes[user.role][user.tier] || [];
+  const boxes = isAdmin ? [...roleBoxes.admin, ...(user.isSuperAdmin ? roleBoxes.superAdmin : [])] : roleBoxes[user.role][user.tier] || [];
   const verification = user.verificationStatus;
   const showHirerBanner = user.role === "hirer" && verification !== "verified";
   const showRejectedBanner = isSeeker && verification === "rejected";
@@ -185,7 +189,7 @@ export default function UserScreen({ navigation }) {
             {isAdmin ? (
               <View style={styles.adminPill}>
                 <MaterialIcons name="admin-panel-settings" size={14} color="#fff" />
-                <Text style={styles.adminPillText}>OWNER CONSOLE</Text>
+                <Text style={styles.adminPillText}>{user.isSuperAdmin ? "SUPER ADMIN" : "ADMIN CONSOLE"}</Text>
               </View>
             ) : (
               <>

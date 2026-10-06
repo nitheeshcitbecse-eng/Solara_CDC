@@ -127,6 +127,21 @@ The app is written in English and translated on the fly (Azure AI Translator fre
   or if the translator is not running — the English text is shown.
 - `Components/LanguagePicker`: on the landing page, the sign-in screens and in the side menu.
 
+**Speed:** the app's own texts (buttons, titles, messages — about 750) are translated ahead of time and shipped
+inside the app in `src/i18n/<language>.json`, so switching language is instant and works offline. Only other
+text (job posts, chat, names) is translated live; if the backend can't, the phone asks MyMemory directly.
+
+After adding or changing interface text, rebuild the bundles (takes ~45 minutes on a CPU):
+
+```powershell
+$env:COLLECT_UI_STRINGS="ui-strings.json"; npx jest __tests__/screens.test.js; Remove-Item Env:COLLECT_UI_STRINGS
+npm run i18n:collect -- ui-strings.json                     # → src/i18n/strings.json
+cd ..	ranslator; .venv\Scripts\python build_bundle.py      # → src/i18n/<language>.json (NLLB-200)
+```
+
+**Fitting:** translated text may wrap or shrink a little instead of spilling out of buttons and cards, and
+Indian scripts get extra line height (`Components/Text`).
+
 The backend caches translations in PostgreSQL and asks its translator (Azure, or the local `../translator`) only
 for new texts. The first visit to a screen in a new language takes a few seconds; after that it is instant.
 

@@ -58,6 +58,7 @@ import TakeDownJobsScreen from "../screens/Admin/ModerateJobs/TakeDownJobsScreen
 import ReportsScreen from "../screens/Admin/ReportsScreen";
 import ShortlistApprovalsScreen from "../screens/Admin/ShortlistApprovalsScreen";
 import AuditLogsScreen from "../screens/Admin/AuditLogsScreen";
+import ManageAdminsScreen from "../screens/Admin/ManageAdminsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -133,6 +134,7 @@ export default function AppNavigator() {
             <Stack.Screen name="ShortlistApprovalsScreen" component={ShortlistApprovalsScreen} />
             <Stack.Screen name="ReportsScreen" component={ReportsScreen} />
             <Stack.Screen name="AuditLogsScreen" component={AuditLogsScreen} />
+            <Stack.Screen name="ManageAdminsScreen" component={ManageAdminsScreen} />
           </>
         )}
       </Stack.Navigator>

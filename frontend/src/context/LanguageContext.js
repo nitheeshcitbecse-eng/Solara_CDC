@@ -11,8 +11,26 @@ import directTranslate from "../lib/directTranslate";
 export const SOURCE_LANGUAGE = "eng_Latn";
 const LANGUAGE_KEY = "language";
 const cacheKey = (code) => `translations:${code}`;
-const BATCH = 40; // texts per request; NLLB on a CPU takes a few seconds per batch
-const DELAY_MS = 60; // collect the texts of a whole screen before asking
+const BATCH = 40; // texts per request
+const BACKEND_RETRY_MS = 10 * 60 * 1000; // after the backend fails to translate, go straight to the fallback
+
+// Ready-made translations of the app's own texts (translator/build_bundle.py): shown instantly and offline.
+// Only texts not in here (job posts, messages, names…) are translated live.
+const BUNDLES = {
+  hin_Deva: () => require("../i18n/hin_Deva.json"),
+  tam_Taml: () => require("../i18n/tam_Taml.json"),
+  tel_Telu: () => require("../i18n/tel_Telu.json"),
+  kan_Knda: () => require("../i18n/kan_Knda.json"),
+  mal_Mlym: () => require("../i18n/mal_Mlym.json"),
+  ben_Beng: () => require("../i18n/ben_Beng.json"),
+  mar_Deva: () => require("../i18n/mar_Deva.json"),
+  guj_Gujr: () => require("../i18n/guj_Gujr.json"),
+  pan_Guru: () => require("../i18n/pan_Guru.json"),
+  ory_Orya: () => require("../i18n/ory_Orya.json"),
+  asm_Beng: () => require("../i18n/asm_Beng.json"),
+};
+const bundled = (code) => (BUNDLES[code] ? BUNDLES[code]() : {});
+const DELAY_MS = 40; // collect the texts of a whole screen before asking
 
 // Shown until the backend's list arrives (and if it can't be reached).
 export const DEFAULT_LANGUAGES = [
@@ -44,6 +62,7 @@ export function LanguageProvider({ children }) {
   const pending = useRef(new Set()); // texts waiting for the next request
   const timer = useRef(null);
   const saveTimer = useRef(null);
+  const backendDownUntil = useRef(0);
 
   const save = (code, next) => {
     clearTimeout(saveTimer.current);
@@ -70,13 +89,15 @@ export function LanguageProvider({ children }) {
     for (let start = 0; start < texts.length; start += BATCH) {
       const chunk = texts.slice(start, start + BATCH);
       try {
-        const { data } = await api.post("/i18n/translate", { language: target, texts: chunk }, { timeout: 180000, quiet: true });
+        if (Date.now() < backendDownUntil.current) throw new Error("Backend translation recently failed");
+        const { data } = await api.post("/i18n/translate", { language: target, texts: chunk }, { timeout: 45000, quiet: true });
         if (data.success) {
           setOffline(false);
           merge(data.translations);
         }
       } catch (err) {
         console.log("Translate Error:", err.response?.data?.message || err.message);
+        backendDownUntil.current = Date.now() + BACKEND_RETRY_MS;
         // The backend couldn't translate: the phone asks the free translator itself.
         let found = {};
         try {
@@ -117,7 +138,7 @@ export function LanguageProvider({ children }) {
     let cached = {};
     try {
       const raw = await AsyncStorage.getItem(cacheKey(code));
-      cached = raw ? JSON.parse(raw) : {};
+      cached = { ...bundled(code), ...(raw ? JSON.parse(raw) : {}) };
       await AsyncStorage.setItem(LANGUAGE_KEY, code);
     } catch (err) {
       console.log("Set Language Error:", err.message);
