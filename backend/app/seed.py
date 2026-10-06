@@ -148,17 +148,22 @@ def seed(demo: bool = False, reset: bool = False) -> None:
         for tier, sectors in SECTORS.items():
             if db.scalar(select(Sector.id).where(Sector.tier == tier).limit(1)) is None:
                 db.add_all(Sector(name=name, icon=icon, tier=tier) for name, icon in sectors)
+        # The owner (ADMIN_EMAIL) is the super admin; scripts/create_admin.py adds more admins.
         admin_email = settings.admin_email.lower()
-        if db.scalar(select(User.id).where(User.email == admin_email)) is None:
+        owner = db.scalar(select(User).where(User.email == admin_email))
+        if owner is None:
             _user(
                 db,
                 admin_email,
                 name="Solara Owner",
                 role="admin",
+                is_super_admin=True,
                 onboarded=True,
                 password_hash=hash_password(settings.admin_password),
                 details={},
             )
+        elif owner.role == "admin" and not owner.is_super_admin:
+            owner.is_super_admin = True
         if demo:
             db.flush()
             normal_hirer, premium_hirer = _demo_users(db)

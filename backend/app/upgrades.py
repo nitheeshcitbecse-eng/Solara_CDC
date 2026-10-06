@@ -13,6 +13,7 @@ from sqlalchemy.orm import Session
 COLUMNS = [
     ("applications", "contact_status", "VARCHAR(10) NOT NULL DEFAULT 'none'"),
     ("applications", "contact_note", "VARCHAR(300)"),
+    ("users", "is_super_admin", "BOOLEAN NOT NULL DEFAULT FALSE"),
 ]
 
 

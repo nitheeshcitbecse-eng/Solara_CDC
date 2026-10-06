@@ -5,10 +5,12 @@ from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
 from app.database import get_db
-from app.deps import get_or_404, require_role
+from app.deps import get_or_404, require_role, require_super_admin
 from app.models import Application, AuditLog, Job, Report, Sector, User
 from app.responses import ok
 from app.schemas.admin import (
+    AdminIn,
+    AdminStatusIn,
     ResolveReportIn,
     ReviewJobIn,
     ReviewShortlistIn,
@@ -17,6 +19,7 @@ from app.schemas.admin import (
     VerifyUserIn,
 )
 from app.serializers import admin_user_dict, application_dict, audit_dict, job_dict, report_dict
+from app.security import hash_password
 from app.services.activity import audit, notify
 from app.services.storage import image_response
 
@@ -275,6 +278,45 @@ def resolve_report(
 
 
 @router.get("/get-audit-logs")
-def get_audit_logs(_: User = Depends(admin_only), db: Session = Depends(get_db)):
+def get_audit_logs(_: User = Depends(require_super_admin), db: Session = Depends(get_db)):
     logs = db.scalars(select(AuditLog).order_by(AuditLog.id.desc()).limit(200)).unique()
     return ok(logs=[audit_dict(log) for log in logs])
+
+
+# ── Admins (super admin only) ────────────────────────────────────────────────
+
+
+@router.get("/get-admins")
+def get_admins(_: User = Depends(require_super_admin), db: Session = Depends(get_db)):
+    admins = db.scalars(select(User).where(User.role == "admin").order_by(User.is_super_admin.desc(), User.created_at))
+    return ok(admins=[admin_user_dict(admin) for admin in admins])
+
+
+@router.post("/add-admin", status_code=status.HTTP_201_CREATED)
+def add_admin(body: AdminIn, owner: User = Depends(require_super_admin), db: Session = Depends(get_db)):
+    email = body.email.lower()
+    if db.scalar(select(User.id).where(User.email == email)) is not None:
+        raise HTTPException(status.HTTP_409_CONFLICT, "An account with this email already exists")
+    admin = User(name=body.name, email=email, role="admin", onboarded=True, password_hash=hash_password(body.password), details={})
+    db.add(admin)
+    db.flush()
+    audit(db, owner, "admin_added", f"user:{admin.id}", email)
+    db.commit()
+    return ok("Admin added", admin=admin_user_dict(admin))
+
+
+@router.put("/update-admin-status/{user_id}")
+def update_admin_status(
+    user_id: int, body: AdminStatusIn, owner: User = Depends(require_super_admin), db: Session = Depends(get_db)
+):
+    admin = get_or_404(db, User, user_id, "Admin")
+    if admin.role != "admin":
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Admin not found")
+    if admin.is_super_admin:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "The super admin can't be removed")
+    admin.status = body.status
+    if body.status != "active":
+        admin.token_version += 1  # signs them out everywhere
+    audit(db, owner, f"admin_{body.status}", f"user:{admin.id}", admin.email)
+    db.commit()
+    return ok("Admin removed" if body.status == "banned" else "Admin restored", admin=admin_user_dict(admin))

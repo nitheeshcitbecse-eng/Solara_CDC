@@ -9,6 +9,16 @@ def reason_field():
     return Field(min_length=5, max_length=300)
 
 
+class AdminIn(CamelModel):
+    name: str = Field(min_length=2, max_length=80)
+    email: str = Field(min_length=5, max_length=254, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    password: str = Field(min_length=8, max_length=128)
+
+
+class AdminStatusIn(CamelModel):
+    status: Literal["active", "banned"]
+
+
 class UserStatusIn(CamelModel):
     status: Literal["active", "suspended", "banned"]
     reason: str = reason_field()

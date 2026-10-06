@@ -28,6 +28,8 @@ class User(TimestampMixin, Base):
     status_reason: Mapped[str | None] = mapped_column(String(300))
     token_version: Mapped[int] = mapped_column(Integer, default=0)
     onboarded: Mapped[bool] = mapped_column(default=False)
+    # Admins moderate the platform; the super admin (the owner) can also add and remove admins.
+    is_super_admin: Mapped[bool] = mapped_column(default=False, server_default="false")
 
     photo_path: Mapped[str | None] = mapped_column(String(255))
     city: Mapped[str | None] = mapped_column(String(60))

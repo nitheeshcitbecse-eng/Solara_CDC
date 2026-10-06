@@ -38,6 +38,13 @@ def require_role(*roles: str) -> Callable[..., User]:
     return checker
 
 
+def require_super_admin(user: User = Depends(get_current_user)) -> User:
+    """The app owner: an admin who can also add and remove other admins."""
+    if user.role != "admin" or not user.is_super_admin:
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Only the super admin can do this")
+    return user
+
+
 def ensure_onboarded(user: User) -> None:
     if user.role != "admin" and not user.onboarded:
         raise HTTPException(status.HTTP_403_FORBIDDEN, "Finish setting up your profile first")

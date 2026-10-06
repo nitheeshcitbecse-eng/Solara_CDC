@@ -37,6 +37,7 @@ def user_dict(user: User) -> dict[str, Any]:
         "email": user.email,
         "phone": user.phone,
         "role": user.role,
+        "isSuperAdmin": user.role == "admin" and user.is_super_admin,
         "tier": user.tier,
         "status": user.status,
         "onboarded": user.role == "admin" or user.onboarded,

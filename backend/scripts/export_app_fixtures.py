@@ -21,6 +21,8 @@ _tmp = Path(tempfile.mkdtemp(prefix="solara-fixtures-"))
 os.environ["DATABASE_URL"] = f"sqlite:///{_tmp / 'fixtures.db'}"
 os.environ["UPLOAD_DIR"] = str(_tmp / "uploads")
 os.environ["JWT_SECRET"] = "fixtures-secret-0123456789abcdefghij"
+# Never use backend/.env values (production settings, real passwords) here.
+os.environ.update(APP_ENV="development", SEED_ON_START="false", ADMIN_PASSWORD="Solara@123", AZURE_TRANSLATOR_KEY="")
 
 from fastapi.testclient import TestClient  # noqa: E402
 
@@ -143,7 +145,7 @@ def main() -> None:
     admin_users = ok(client.get(f"{API}/admin/get-all-users", headers=a))["users"]
     record("admin", ["/auth/profile", "/notifications/get-all-notifications", "/support/get-all-faqs", "/sectors/get-all-sectors",
                      "/admin/get-dashboard-stats", "/admin/get-all-users", "/admin/get-pending-verifications", "/admin/get-all-jobs",
-                     "/admin/get-all-reports", "/admin/get-audit-logs", "/admin/get-shortlist-requests"]
+                     "/admin/get-all-reports", "/admin/get-audit-logs", "/admin/get-shortlist-requests", "/admin/get-admins"]
            + [f"/admin/get-user/{user['id']}" for user in admin_users])
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
