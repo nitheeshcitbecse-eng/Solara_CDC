@@ -1,0 +1,3594 @@
+{
+ "normalSeeker": {
+  "user": {
+   "id": 2,
+   "name": "Prasina Selvam",
+   "email": "seeker@solara.app",
+   "phone": "9876543210",
+   "role": "seeker",
+   "tier": "normal",
+   "status": "active",
+   "onboarded": true,
+   "hasPhoto": false,
+   "city": "Chennai",
+   "about": null,
+   "skills": [
+    "Cooking",
+    "House Help"
+   ],
+   "experienceYears": 3,
+   "businessName": null,
+   "details": {},
+   "verificationStatus": "verified",
+   "verificationNote": null,
+   "aadhaarLast4": "1234",
+   "hasAadhaar": false,
+   "createdAt": "2026-10-06T05:04:04.681975"
+  },
+  "responses": {
+   "/auth/profile": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 2,
+      "name": "Prasina Selvam",
+      "email": "seeker@solara.app",
+      "phone": "9876543210",
+      "role": "seeker",
+      "tier": "normal",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": null,
+      "skills": [
+       "Cooking",
+       "House Help"
+      ],
+      "experienceYears": 3,
+      "businessName": null,
+      "details": {},
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "1234",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.681975"
+     }
+    }
+   },
+   "/notifications/get-all-notifications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "notifications": [
+      {
+       "id": 4,
+       "title": "New message from Arun Kumar",
+       "body": "Can you come to the site on Monday at 9?",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:05.997353"
+      },
+      {
+       "id": 3,
+       "title": "You have been shortlisted",
+       "body": "Update on your application for House help for a family of four.",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:05.922168"
+      }
+     ],
+     "unread": 2
+    }
+   },
+   "/messages/get-all-conversations": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "conversations": [
+      {
+       "id": 1,
+       "applicationId": 1,
+       "jobTitle": "House help for a family of four",
+       "otherUser": {
+        "id": 4,
+        "name": "Arun Home Services",
+        "role": "hirer",
+        "hasPhoto": false
+       },
+       "lastMessage": "Yes sir, I will be there.",
+       "lastMessageAt": "2026-10-06T05:04:06.010348",
+       "unread": 1
+      }
+     ]
+    }
+   },
+   "/support/get-all-faqs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "faqs": [
+      {
+       "id": 1,
+       "question": "Do I have to pay to use Solara?",
+       "answer": "No. Solara is always free for job seekers. Never pay anyone to apply for a job. Report such requests from the job page."
+      },
+      {
+       "id": 2,
+       "question": "What does the \"Verified\" badge mean?",
+       "answer": "The hirer has verified their identity with Aadhaar and our team has reviewed it. You can see the badge on every job they post."
+      },
+      {
+       "id": 3,
+       "question": "Who can see my phone number?",
+       "answer": "Only hirers you apply to, and only if you turn on \"Share my phone number\" for that application. Otherwise they contact you through in-app messages."
+      },
+      {
+       "id": 4,
+       "question": "How is my Aadhaar kept safe?",
+       "answer": "We only ask for the last four digits and a photo for verification. The full number is never shown in the app, and documents can only be opened by our verification team."
+      },
+      {
+       "id": 6,
+       "question": "What is the difference between Normal and Premium?",
+       "answer": "Normal is for daily-wage and household work such as construction, house help and driving: sign-up only needs your photo and Aadhaar. Premium is for professionals such as doctors and engineers, with a detailed profile. Each side only sees its own jobs, and both are free."
+      },
+      {
+       "id": 5,
+       "question": "Why is my job waiting for review?",
+       "answer": "When you suggest a new sector, our team checks it before the job goes live. Jobs in existing sectors are published straight away."
+      }
+     ]
+    }
+   },
+   "/sectors/get-all-sectors": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "sectors": [
+      {
+       "id": 5,
+       "name": "Caretaking",
+       "icon": "elderly",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 1,
+       "name": "Construction",
+       "icon": "construction",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 3,
+       "name": "Cooking",
+       "icon": "restaurant",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 7,
+       "name": "Delivery",
+       "icon": "local-shipping",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 4,
+       "name": "Driving",
+       "icon": "directions-car",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 2,
+       "name": "House Help",
+       "icon": "cleaning-services",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 6,
+       "name": "Security",
+       "icon": "security",
+       "tier": "normal",
+       "jobCount": 0
+      }
+     ]
+    }
+   },
+   "/jobs/get-all-jobs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "jobs": [
+      {
+       "id": 2,
+       "title": "House help for a family of four",
+       "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+       "tier": "normal",
+       "sector": {
+        "id": 2,
+        "name": "House Help",
+        "icon": "cleaning-services",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Adyar",
+       "salaryMin": 9000,
+       "salaryMax": 11000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "saved": false,
+       "myApplicationId": 1
+      },
+      {
+       "id": 3,
+       "title": "Car driver for office commute",
+       "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+       "tier": "normal",
+       "sector": {
+        "id": 4,
+        "name": "Driving",
+        "icon": "directions-car",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Velachery",
+       "salaryMin": 18000,
+       "salaryMax": 22000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "saved": false,
+       "myApplicationId": 2
+      },
+      {
+       "id": 1,
+       "title": "Mason helper for a house build",
+       "description": "Carry bricks and cement, mix mortar and help the mason. Lunch and tea provided.",
+       "tier": "normal",
+       "sector": {
+        "id": 1,
+        "name": "Construction",
+        "icon": "construction",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Tambaram",
+       "salaryMin": 700,
+       "salaryMax": 850,
+       "salaryPeriod": "day",
+       "shift": "day",
+       "openings": 4,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.710513",
+       "saved": true,
+       "myApplicationId": null
+      }
+     ]
+    }
+   },
+   "/jobs/get-saved-jobs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "jobs": [
+      {
+       "id": 1,
+       "title": "Mason helper for a house build",
+       "description": "Carry bricks and cement, mix mortar and help the mason. Lunch and tea provided.",
+       "tier": "normal",
+       "sector": {
+        "id": 1,
+        "name": "Construction",
+        "icon": "construction",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Tambaram",
+       "salaryMin": 700,
+       "salaryMax": 850,
+       "salaryPeriod": "day",
+       "shift": "day",
+       "openings": 4,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.710513",
+       "saved": true,
+       "myApplicationId": null
+      }
+     ]
+    }
+   },
+   "/applications/get-my-applications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": [
+      {
+       "id": 2,
+       "status": "applied",
+       "message": "Looking for a steady job close to home, available mornings.",
+       "expectedSalary": null,
+       "availableFrom": null,
+       "sharePhone": false,
+       "createdAt": "2026-10-06T05:04:05.897601",
+       "job": {
+        "id": 3,
+        "title": "Car driver for office commute",
+        "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+        "tier": "normal",
+        "sector": {
+         "id": 4,
+         "name": "Driving",
+         "icon": "directions-car",
+         "tier": "normal"
+        },
+        "proposedSector": null,
+        "city": "Chennai",
+        "address": "Velachery",
+        "salaryMin": 18000,
+        "salaryMax": 22000,
+        "salaryPeriod": "month",
+        "shift": "day",
+        "openings": 1,
+        "employmentType": null,
+        "minExperience": null,
+        "qualification": null,
+        "requiredSkills": [],
+        "status": "active",
+        "reviewNote": null,
+        "photos": [],
+        "hirer": {
+         "id": 4,
+         "name": "Arun Kumar",
+         "businessName": "Arun Home Services",
+         "verified": true,
+         "organizationType": null
+        },
+        "createdAt": "2026-10-06T05:04:04.711514"
+       },
+       "contactStatus": null,
+       "contactNote": null,
+       "canChat": true
+      },
+      {
+       "id": 1,
+       "status": "shortlisted",
+       "message": "I have done this work for five years and can start tomorrow.",
+       "expectedSalary": 800,
+       "availableFrom": "2026-11-01",
+       "sharePhone": true,
+       "createdAt": "2026-10-06T05:04:05.878400",
+       "job": {
+        "id": 2,
+        "title": "House help for a family of four",
+        "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+        "tier": "normal",
+        "sector": {
+         "id": 2,
+         "name": "House Help",
+         "icon": "cleaning-services",
+         "tier": "normal"
+        },
+        "proposedSector": null,
+        "city": "Chennai",
+        "address": "Adyar",
+        "salaryMin": 9000,
+        "salaryMax": 11000,
+        "salaryPeriod": "month",
+        "shift": "day",
+        "openings": 1,
+        "employmentType": null,
+        "minExperience": null,
+        "qualification": null,
+        "requiredSkills": [],
+        "status": "active",
+        "reviewNote": null,
+        "photos": [],
+        "hirer": {
+         "id": 4,
+         "name": "Arun Kumar",
+         "businessName": "Arun Home Services",
+         "verified": true,
+         "organizationType": null
+        },
+        "createdAt": "2026-10-06T05:04:04.711514"
+       },
+       "contactStatus": null,
+       "contactNote": null,
+       "canChat": true
+      }
+     ]
+    }
+   },
+   "/jobs/get-job/2": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "job": {
+      "id": 2,
+      "title": "House help for a family of four",
+      "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+      "tier": "normal",
+      "sector": {
+       "id": 2,
+       "name": "House Help",
+       "icon": "cleaning-services",
+       "tier": "normal"
+      },
+      "proposedSector": null,
+      "city": "Chennai",
+      "address": "Adyar",
+      "salaryMin": 9000,
+      "salaryMax": 11000,
+      "salaryPeriod": "month",
+      "shift": "day",
+      "openings": 1,
+      "employmentType": null,
+      "minExperience": null,
+      "qualification": null,
+      "requiredSkills": [],
+      "status": "active",
+      "reviewNote": null,
+      "photos": [],
+      "hirer": {
+       "id": 4,
+       "name": "Arun Kumar",
+       "businessName": "Arun Home Services",
+       "verified": true,
+       "organizationType": null
+      },
+      "createdAt": "2026-10-06T05:04:04.711514",
+      "saved": false,
+      "myApplicationId": 1
+     }
+    }
+   },
+   "/jobs/get-job/3": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "job": {
+      "id": 3,
+      "title": "Car driver for office commute",
+      "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+      "tier": "normal",
+      "sector": {
+       "id": 4,
+       "name": "Driving",
+       "icon": "directions-car",
+       "tier": "normal"
+      },
+      "proposedSector": null,
+      "city": "Chennai",
+      "address": "Velachery",
+      "salaryMin": 18000,
+      "salaryMax": 22000,
+      "salaryPeriod": "month",
+      "shift": "day",
+      "openings": 1,
+      "employmentType": null,
+      "minExperience": null,
+      "qualification": null,
+      "requiredSkills": [],
+      "status": "active",
+      "reviewNote": null,
+      "photos": [],
+      "hirer": {
+       "id": 4,
+       "name": "Arun Kumar",
+       "businessName": "Arun Home Services",
+       "verified": true,
+       "organizationType": null
+      },
+      "createdAt": "2026-10-06T05:04:04.711514",
+      "saved": false,
+      "myApplicationId": 2
+     }
+    }
+   },
+   "/jobs/get-job/1": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "job": {
+      "id": 1,
+      "title": "Mason helper for a house build",
+      "description": "Carry bricks and cement, mix mortar and help the mason. Lunch and tea provided.",
+      "tier": "normal",
+      "sector": {
+       "id": 1,
+       "name": "Construction",
+       "icon": "construction",
+       "tier": "normal"
+      },
+      "proposedSector": null,
+      "city": "Chennai",
+      "address": "Tambaram",
+      "salaryMin": 700,
+      "salaryMax": 850,
+      "salaryPeriod": "day",
+      "shift": "day",
+      "openings": 4,
+      "employmentType": null,
+      "minExperience": null,
+      "qualification": null,
+      "requiredSkills": [],
+      "status": "active",
+      "reviewNote": null,
+      "photos": [],
+      "hirer": {
+       "id": 4,
+       "name": "Arun Kumar",
+       "businessName": "Arun Home Services",
+       "verified": true,
+       "organizationType": null
+      },
+      "createdAt": "2026-10-06T05:04:04.710513",
+      "saved": true,
+      "myApplicationId": null
+     }
+    }
+   },
+   "/applications/get-application/2": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "application": {
+      "id": 2,
+      "status": "applied",
+      "message": "Looking for a steady job close to home, available mornings.",
+      "expectedSalary": null,
+      "availableFrom": null,
+      "sharePhone": false,
+      "createdAt": "2026-10-06T05:04:05.897601",
+      "job": {
+       "id": 3,
+       "title": "Car driver for office commute",
+       "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+       "tier": "normal",
+       "sector": {
+        "id": 4,
+        "name": "Driving",
+        "icon": "directions-car",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Velachery",
+       "salaryMin": 18000,
+       "salaryMax": 22000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      "contactStatus": null,
+      "contactNote": null,
+      "canChat": true
+     }
+    }
+   },
+   "/applications/get-application/1": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "application": {
+      "id": 1,
+      "status": "shortlisted",
+      "message": "I have done this work for five years and can start tomorrow.",
+      "expectedSalary": 800,
+      "availableFrom": "2026-11-01",
+      "sharePhone": true,
+      "createdAt": "2026-10-06T05:04:05.878400",
+      "job": {
+       "id": 2,
+       "title": "House help for a family of four",
+       "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+       "tier": "normal",
+       "sector": {
+        "id": 2,
+        "name": "House Help",
+        "icon": "cleaning-services",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Adyar",
+       "salaryMin": 9000,
+       "salaryMax": 11000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      "contactStatus": null,
+      "contactNote": null,
+      "canChat": true
+     }
+    }
+   },
+   "/messages/get-messages/1": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "conversation": {
+      "id": 1,
+      "applicationId": 1,
+      "jobTitle": "House help for a family of four",
+      "otherUser": {
+       "id": 4,
+       "name": "Arun Home Services",
+       "role": "hirer",
+       "hasPhoto": false
+      },
+      "lastMessage": "Yes sir, I will be there.",
+      "lastMessageAt": "2026-10-06T05:04:06.010348",
+      "unread": 0
+     },
+     "messages": [
+      {
+       "id": 1,
+       "text": "Can you come to the site on Monday at 9?",
+       "mine": false,
+       "createdAt": "2026-10-06T05:04:05.997353"
+      },
+      {
+       "id": 2,
+       "text": "Yes sir, I will be there.",
+       "mine": true,
+       "createdAt": "2026-10-06T05:04:06.010348"
+      }
+     ]
+    }
+   }
+  }
+ },
+ "premiumSeeker": {
+  "user": {
+   "id": 3,
+   "name": "Dr. Karthik Raman",
+   "email": "doctor@solara.app",
+   "phone": "9876543211",
+   "role": "seeker",
+   "tier": "premium",
+   "status": "active",
+   "onboarded": true,
+   "hasPhoto": false,
+   "city": "Chennai",
+   "about": "MBBS, MD with six years in emergency and general medicine.",
+   "skills": [
+    "General Medicine",
+    "Emergency Care"
+   ],
+   "experienceYears": 6,
+   "businessName": null,
+   "details": {
+    "profession": "Doctor",
+    "specialization": "General Medicine",
+    "qualification": "MBBS, MD",
+    "institution": "Madras Medical College",
+    "graduationYear": 2016,
+    "licenseNumber": "TNMC 123456",
+    "noticePeriod": "1_month",
+    "languages": [
+     "English",
+     "Tamil",
+     "Hindi"
+    ],
+    "preferredCities": [
+     "Chennai",
+     "Bengaluru"
+    ]
+   },
+   "verificationStatus": "verified",
+   "verificationNote": null,
+   "aadhaarLast4": "5678",
+   "hasAadhaar": false,
+   "createdAt": "2026-10-06T05:04:04.681975"
+  },
+  "responses": {
+   "/auth/profile": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 3,
+      "name": "Dr. Karthik Raman",
+      "email": "doctor@solara.app",
+      "phone": "9876543211",
+      "role": "seeker",
+      "tier": "premium",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": "MBBS, MD with six years in emergency and general medicine.",
+      "skills": [
+       "General Medicine",
+       "Emergency Care"
+      ],
+      "experienceYears": 6,
+      "businessName": null,
+      "details": {
+       "profession": "Doctor",
+       "specialization": "General Medicine",
+       "qualification": "MBBS, MD",
+       "institution": "Madras Medical College",
+       "graduationYear": 2016,
+       "licenseNumber": "TNMC 123456",
+       "noticePeriod": "1_month",
+       "languages": [
+        "English",
+        "Tamil",
+        "Hindi"
+       ],
+       "preferredCities": [
+        "Chennai",
+        "Bengaluru"
+       ]
+      },
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "5678",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.681975"
+     }
+    }
+   },
+   "/notifications/get-all-notifications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "notifications": [
+      {
+       "id": 7,
+       "title": "You have been shortlisted",
+       "body": "Update on your application for General Physician (OPD).",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:06.045920"
+      }
+     ],
+     "unread": 1
+    }
+   },
+   "/messages/get-all-conversations": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "conversations": []
+    }
+   },
+   "/support/get-all-faqs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "faqs": [
+      {
+       "id": 1,
+       "question": "Do I have to pay to use Solara?",
+       "answer": "No. Solara is always free for job seekers. Never pay anyone to apply for a job. Report such requests from the job page."
+      },
+      {
+       "id": 2,
+       "question": "What does the \"Verified\" badge mean?",
+       "answer": "The hirer has verified their identity with Aadhaar and our team has reviewed it. You can see the badge on every job they post."
+      },
+      {
+       "id": 3,
+       "question": "Who can see my phone number?",
+       "answer": "Only hirers you apply to, and only if you turn on \"Share my phone number\" for that application. Otherwise they contact you through in-app messages."
+      },
+      {
+       "id": 4,
+       "question": "How is my Aadhaar kept safe?",
+       "answer": "We only ask for the last four digits and a photo for verification. The full number is never shown in the app, and documents can only be opened by our verification team."
+      },
+      {
+       "id": 6,
+       "question": "What is the difference between Normal and Premium?",
+       "answer": "Normal is for daily-wage and household work such as construction, house help and driving: sign-up only needs your photo and Aadhaar. Premium is for professionals such as doctors and engineers, with a detailed profile. Each side only sees its own jobs, and both are free."
+      },
+      {
+       "id": 5,
+       "question": "Why is my job waiting for review?",
+       "answer": "When you suggest a new sector, our team checks it before the job goes live. Jobs in existing sectors are published straight away."
+      }
+     ]
+    }
+   },
+   "/sectors/get-all-sectors": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "sectors": [
+      {
+       "id": 11,
+       "name": "Education",
+       "icon": "school",
+       "tier": "premium",
+       "jobCount": 0
+      },
+      {
+       "id": 9,
+       "name": "Engineering",
+       "icon": "engineering",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 12,
+       "name": "Finance & Accounts",
+       "icon": "account-balance",
+       "tier": "premium",
+       "jobCount": 0
+      },
+      {
+       "id": 8,
+       "name": "Healthcare",
+       "icon": "local-hospital",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 10,
+       "name": "IT & Software",
+       "icon": "computer",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 13,
+       "name": "Legal",
+       "icon": "gavel",
+       "tier": "premium",
+       "jobCount": 0
+      }
+     ]
+    }
+   },
+   "/jobs/get-all-jobs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "jobs": [
+      {
+       "id": 4,
+       "title": "General Physician (OPD)",
+       "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+       "tier": "premium",
+       "sector": {
+        "id": 8,
+        "name": "Healthcare",
+        "icon": "local-hospital",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Greams Road",
+       "salaryMin": 1800000,
+       "salaryMax": 2400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 3,
+       "qualification": "MBBS, MD (General Medicine)",
+       "requiredSkills": [
+        "OPD",
+        "Patient Care",
+        "Diagnosis"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "saved": false,
+       "myApplicationId": 3
+      },
+      {
+       "id": 5,
+       "title": "Biomedical Engineer",
+       "description": "Maintain ICU and theatre equipment, plan preventive maintenance and train staff.",
+       "tier": "premium",
+       "sector": {
+        "id": 9,
+        "name": "Engineering",
+        "icon": "engineering",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 600000,
+       "salaryMax": 900000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 2,
+       "qualification": "B.E. Biomedical Engineering",
+       "requiredSkills": [
+        "Equipment Maintenance",
+        "Calibration"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "saved": true,
+       "myApplicationId": null
+      },
+      {
+       "id": 6,
+       "title": "Full-stack Developer (Hospital Systems)",
+       "description": "Build and maintain the hospital's patient portal and internal tools.",
+       "tier": "premium",
+       "sector": {
+        "id": 10,
+        "name": "IT & Software",
+        "icon": "computer",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 800000,
+       "salaryMax": 1400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 2,
+       "qualification": "B.E. / B.Tech",
+       "requiredSkills": [
+        "React",
+        "Python",
+        "PostgreSQL"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "saved": false,
+       "myApplicationId": null
+      }
+     ]
+    }
+   },
+   "/jobs/get-saved-jobs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "jobs": [
+      {
+       "id": 5,
+       "title": "Biomedical Engineer",
+       "description": "Maintain ICU and theatre equipment, plan preventive maintenance and train staff.",
+       "tier": "premium",
+       "sector": {
+        "id": 9,
+        "name": "Engineering",
+        "icon": "engineering",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 600000,
+       "salaryMax": 900000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 2,
+       "qualification": "B.E. Biomedical Engineering",
+       "requiredSkills": [
+        "Equipment Maintenance",
+        "Calibration"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "saved": true,
+       "myApplicationId": null
+      }
+     ]
+    }
+   },
+   "/applications/get-my-applications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": [
+      {
+       "id": 3,
+       "status": "shortlisted",
+       "message": "Six years in emergency and general medicine, MD from Chennai.",
+       "expectedSalary": 2200000,
+       "availableFrom": null,
+       "sharePhone": false,
+       "createdAt": "2026-10-06T05:04:06.033906",
+       "job": {
+        "id": 4,
+        "title": "General Physician (OPD)",
+        "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+        "tier": "premium",
+        "sector": {
+         "id": 8,
+         "name": "Healthcare",
+         "icon": "local-hospital",
+         "tier": "premium"
+        },
+        "proposedSector": null,
+        "city": "Chennai",
+        "address": "Greams Road",
+        "salaryMin": 1800000,
+        "salaryMax": 2400000,
+        "salaryPeriod": "year",
+        "shift": "day",
+        "openings": 1,
+        "employmentType": "full_time",
+        "minExperience": 3,
+        "qualification": "MBBS, MD (General Medicine)",
+        "requiredSkills": [
+         "OPD",
+         "Patient Care",
+         "Diagnosis"
+        ],
+        "status": "active",
+        "reviewNote": null,
+        "photos": [],
+        "hirer": {
+         "id": 5,
+         "name": "Meera Iyer",
+         "businessName": "Sunrise Multispeciality Hospital",
+         "verified": true,
+         "organizationType": "hospital"
+        },
+        "createdAt": "2026-10-06T05:04:04.711514"
+       },
+       "contactStatus": "pending",
+       "contactNote": null,
+       "canChat": false
+      }
+     ]
+    }
+   },
+   "/jobs/get-job/4": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "job": {
+      "id": 4,
+      "title": "General Physician (OPD)",
+      "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+      "tier": "premium",
+      "sector": {
+       "id": 8,
+       "name": "Healthcare",
+       "icon": "local-hospital",
+       "tier": "premium"
+      },
+      "proposedSector": null,
+      "city": "Chennai",
+      "address": "Greams Road",
+      "salaryMin": 1800000,
+      "salaryMax": 2400000,
+      "salaryPeriod": "year",
+      "shift": "day",
+      "openings": 1,
+      "employmentType": "full_time",
+      "minExperience": 3,
+      "qualification": "MBBS, MD (General Medicine)",
+      "requiredSkills": [
+       "OPD",
+       "Patient Care",
+       "Diagnosis"
+      ],
+      "status": "active",
+      "reviewNote": null,
+      "photos": [],
+      "hirer": {
+       "id": 5,
+       "name": "Meera Iyer",
+       "businessName": "Sunrise Multispeciality Hospital",
+       "verified": true,
+       "organizationType": "hospital"
+      },
+      "createdAt": "2026-10-06T05:04:04.711514",
+      "saved": false,
+      "myApplicationId": 3
+     }
+    }
+   },
+   "/jobs/get-job/5": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "job": {
+      "id": 5,
+      "title": "Biomedical Engineer",
+      "description": "Maintain ICU and theatre equipment, plan preventive maintenance and train staff.",
+      "tier": "premium",
+      "sector": {
+       "id": 9,
+       "name": "Engineering",
+       "icon": "engineering",
+       "tier": "premium"
+      },
+      "proposedSector": null,
+      "city": "Chennai",
+      "address": null,
+      "salaryMin": 600000,
+      "salaryMax": 900000,
+      "salaryPeriod": "year",
+      "shift": "day",
+      "openings": 1,
+      "employmentType": "full_time",
+      "minExperience": 2,
+      "qualification": "B.E. Biomedical Engineering",
+      "requiredSkills": [
+       "Equipment Maintenance",
+       "Calibration"
+      ],
+      "status": "active",
+      "reviewNote": null,
+      "photos": [],
+      "hirer": {
+       "id": 5,
+       "name": "Meera Iyer",
+       "businessName": "Sunrise Multispeciality Hospital",
+       "verified": true,
+       "organizationType": "hospital"
+      },
+      "createdAt": "2026-10-06T05:04:04.711514",
+      "saved": true,
+      "myApplicationId": null
+     }
+    }
+   },
+   "/jobs/get-job/6": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "job": {
+      "id": 6,
+      "title": "Full-stack Developer (Hospital Systems)",
+      "description": "Build and maintain the hospital's patient portal and internal tools.",
+      "tier": "premium",
+      "sector": {
+       "id": 10,
+       "name": "IT & Software",
+       "icon": "computer",
+       "tier": "premium"
+      },
+      "proposedSector": null,
+      "city": "Chennai",
+      "address": null,
+      "salaryMin": 800000,
+      "salaryMax": 1400000,
+      "salaryPeriod": "year",
+      "shift": "day",
+      "openings": 1,
+      "employmentType": "full_time",
+      "minExperience": 2,
+      "qualification": "B.E. / B.Tech",
+      "requiredSkills": [
+       "React",
+       "Python",
+       "PostgreSQL"
+      ],
+      "status": "active",
+      "reviewNote": null,
+      "photos": [],
+      "hirer": {
+       "id": 5,
+       "name": "Meera Iyer",
+       "businessName": "Sunrise Multispeciality Hospital",
+       "verified": true,
+       "organizationType": "hospital"
+      },
+      "createdAt": "2026-10-06T05:04:04.711514",
+      "saved": false,
+      "myApplicationId": null
+     }
+    }
+   },
+   "/applications/get-application/3": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "application": {
+      "id": 3,
+      "status": "shortlisted",
+      "message": "Six years in emergency and general medicine, MD from Chennai.",
+      "expectedSalary": 2200000,
+      "availableFrom": null,
+      "sharePhone": false,
+      "createdAt": "2026-10-06T05:04:06.033906",
+      "job": {
+       "id": 4,
+       "title": "General Physician (OPD)",
+       "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+       "tier": "premium",
+       "sector": {
+        "id": 8,
+        "name": "Healthcare",
+        "icon": "local-hospital",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Greams Road",
+       "salaryMin": 1800000,
+       "salaryMax": 2400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 3,
+       "qualification": "MBBS, MD (General Medicine)",
+       "requiredSkills": [
+        "OPD",
+        "Patient Care",
+        "Diagnosis"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      "contactStatus": "pending",
+      "contactNote": null,
+      "canChat": false
+     }
+    }
+   }
+  }
+ },
+ "normalHirer": {
+  "user": {
+   "id": 4,
+   "name": "Arun Kumar",
+   "email": "hirer@solara.app",
+   "phone": "9876500001",
+   "role": "hirer",
+   "tier": "normal",
+   "status": "active",
+   "onboarded": true,
+   "hasPhoto": false,
+   "city": "Chennai",
+   "about": null,
+   "skills": [],
+   "experienceYears": null,
+   "businessName": "Arun Home Services",
+   "details": {},
+   "verificationStatus": "verified",
+   "verificationNote": null,
+   "aadhaarLast4": "4821",
+   "hasAadhaar": false,
+   "createdAt": "2026-10-06T05:04:04.682971"
+  },
+  "responses": {
+   "/auth/profile": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 4,
+      "name": "Arun Kumar",
+      "email": "hirer@solara.app",
+      "phone": "9876500001",
+      "role": "hirer",
+      "tier": "normal",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": null,
+      "skills": [],
+      "experienceYears": null,
+      "businessName": "Arun Home Services",
+      "details": {},
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "4821",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.682971"
+     }
+    }
+   },
+   "/notifications/get-all-notifications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "notifications": [
+      {
+       "id": 5,
+       "title": "New message from Prasina Selvam",
+       "body": "Yes sir, I will be there.",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:06.010871"
+      },
+      {
+       "id": 2,
+       "title": "New applicant",
+       "body": "Prasina Selvam applied for Car driver for office commute.",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:05.896604"
+      },
+      {
+       "id": 1,
+       "title": "New applicant",
+       "body": "Prasina Selvam applied for House help for a family of four.",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:05.877414"
+      }
+     ],
+     "unread": 3
+    }
+   },
+   "/messages/get-all-conversations": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "conversations": [
+      {
+       "id": 1,
+       "applicationId": 1,
+       "jobTitle": "House help for a family of four",
+       "otherUser": {
+        "id": 2,
+        "name": "Prasina Selvam",
+        "role": "seeker",
+        "hasPhoto": false
+       },
+       "lastMessage": "Yes sir, I will be there.",
+       "lastMessageAt": "2026-10-06T05:04:06.010348",
+       "unread": 1
+      }
+     ]
+    }
+   },
+   "/support/get-all-faqs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "faqs": [
+      {
+       "id": 1,
+       "question": "Do I have to pay to use Solara?",
+       "answer": "No. Solara is always free for job seekers. Never pay anyone to apply for a job. Report such requests from the job page."
+      },
+      {
+       "id": 2,
+       "question": "What does the \"Verified\" badge mean?",
+       "answer": "The hirer has verified their identity with Aadhaar and our team has reviewed it. You can see the badge on every job they post."
+      },
+      {
+       "id": 3,
+       "question": "Who can see my phone number?",
+       "answer": "Only hirers you apply to, and only if you turn on \"Share my phone number\" for that application. Otherwise they contact you through in-app messages."
+      },
+      {
+       "id": 4,
+       "question": "How is my Aadhaar kept safe?",
+       "answer": "We only ask for the last four digits and a photo for verification. The full number is never shown in the app, and documents can only be opened by our verification team."
+      },
+      {
+       "id": 6,
+       "question": "What is the difference between Normal and Premium?",
+       "answer": "Normal is for daily-wage and household work such as construction, house help and driving: sign-up only needs your photo and Aadhaar. Premium is for professionals such as doctors and engineers, with a detailed profile. Each side only sees its own jobs, and both are free."
+      },
+      {
+       "id": 5,
+       "question": "Why is my job waiting for review?",
+       "answer": "When you suggest a new sector, our team checks it before the job goes live. Jobs in existing sectors are published straight away."
+      }
+     ]
+    }
+   },
+   "/sectors/get-all-sectors": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "sectors": [
+      {
+       "id": 5,
+       "name": "Caretaking",
+       "icon": "elderly",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 1,
+       "name": "Construction",
+       "icon": "construction",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 3,
+       "name": "Cooking",
+       "icon": "restaurant",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 7,
+       "name": "Delivery",
+       "icon": "local-shipping",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 4,
+       "name": "Driving",
+       "icon": "directions-car",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 2,
+       "name": "House Help",
+       "icon": "cleaning-services",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 6,
+       "name": "Security",
+       "icon": "security",
+       "tier": "normal",
+       "jobCount": 0
+      }
+     ]
+    }
+   },
+   "/jobs/get-my-jobs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "jobs": [
+      {
+       "id": 7,
+       "title": "Gardener for apartment complex",
+       "description": "Water plants, trim hedges and keep the lawn tidy every morning.",
+       "tier": "normal",
+       "sector": null,
+       "proposedSector": "Gardening",
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 600,
+       "salaryMax": 700,
+       "salaryPeriod": "day",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "pending_review",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:06.355458",
+       "applicantCount": 0,
+       "newApplicants": 0
+      },
+      {
+       "id": 2,
+       "title": "House help for a family of four",
+       "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+       "tier": "normal",
+       "sector": {
+        "id": 2,
+        "name": "House Help",
+        "icon": "cleaning-services",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Adyar",
+       "salaryMin": 9000,
+       "salaryMax": 11000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "applicantCount": 1,
+       "newApplicants": 0
+      },
+      {
+       "id": 3,
+       "title": "Car driver for office commute",
+       "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+       "tier": "normal",
+       "sector": {
+        "id": 4,
+        "name": "Driving",
+        "icon": "directions-car",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Velachery",
+       "salaryMin": 18000,
+       "salaryMax": 22000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "applicantCount": 1,
+       "newApplicants": 1
+      },
+      {
+       "id": 1,
+       "title": "Mason helper for a house build",
+       "description": "Carry bricks and cement, mix mortar and help the mason. Lunch and tea provided.",
+       "tier": "normal",
+       "sector": {
+        "id": 1,
+        "name": "Construction",
+        "icon": "construction",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Tambaram",
+       "salaryMin": 700,
+       "salaryMax": 850,
+       "salaryPeriod": "day",
+       "shift": "day",
+       "openings": 4,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.710513",
+       "applicantCount": 0,
+       "newApplicants": 0
+      }
+     ]
+    }
+   },
+   "/applications/get-job-applicants/7": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": []
+    }
+   },
+   "/applications/get-job-applicants/2": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": [
+      {
+       "id": 1,
+       "status": "shortlisted",
+       "message": "I have done this work for five years and can start tomorrow.",
+       "expectedSalary": 800,
+       "availableFrom": "2026-11-01",
+       "sharePhone": true,
+       "createdAt": "2026-10-06T05:04:05.878400",
+       "job": {
+        "id": 2,
+        "title": "House help for a family of four",
+        "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+        "tier": "normal",
+        "sector": {
+         "id": 2,
+         "name": "House Help",
+         "icon": "cleaning-services",
+         "tier": "normal"
+        },
+        "proposedSector": null,
+        "city": "Chennai",
+        "address": "Adyar",
+        "salaryMin": 9000,
+        "salaryMax": 11000,
+        "salaryPeriod": "month",
+        "shift": "day",
+        "openings": 1,
+        "employmentType": null,
+        "minExperience": null,
+        "qualification": null,
+        "requiredSkills": [],
+        "status": "active",
+        "reviewNote": null,
+        "photos": [],
+        "hirer": {
+         "id": 4,
+         "name": "Arun Kumar",
+         "businessName": "Arun Home Services",
+         "verified": true,
+         "organizationType": null
+        },
+        "createdAt": "2026-10-06T05:04:04.711514"
+       },
+       "contactStatus": null,
+       "contactNote": null,
+       "canChat": true,
+       "seeker": {
+        "id": 2,
+        "name": "Prasina Selvam",
+        "tier": "normal",
+        "city": "Chennai",
+        "about": null,
+        "skills": [
+         "Cooking",
+         "House Help"
+        ],
+        "experienceYears": 3,
+        "details": {},
+        "hasPhoto": false,
+        "verified": true,
+        "phone": "9876543210",
+        "email": null
+       },
+       "seen": true
+      }
+     ]
+    }
+   },
+   "/applications/get-job-applicants/3": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": [
+      {
+       "id": 2,
+       "status": "applied",
+       "message": "Looking for a steady job close to home, available mornings.",
+       "expectedSalary": null,
+       "availableFrom": null,
+       "sharePhone": false,
+       "createdAt": "2026-10-06T05:04:05.897601",
+       "job": {
+        "id": 3,
+        "title": "Car driver for office commute",
+        "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+        "tier": "normal",
+        "sector": {
+         "id": 4,
+         "name": "Driving",
+         "icon": "directions-car",
+         "tier": "normal"
+        },
+        "proposedSector": null,
+        "city": "Chennai",
+        "address": "Velachery",
+        "salaryMin": 18000,
+        "salaryMax": 22000,
+        "salaryPeriod": "month",
+        "shift": "day",
+        "openings": 1,
+        "employmentType": null,
+        "minExperience": null,
+        "qualification": null,
+        "requiredSkills": [],
+        "status": "active",
+        "reviewNote": null,
+        "photos": [],
+        "hirer": {
+         "id": 4,
+         "name": "Arun Kumar",
+         "businessName": "Arun Home Services",
+         "verified": true,
+         "organizationType": null
+        },
+        "createdAt": "2026-10-06T05:04:04.711514"
+       },
+       "contactStatus": null,
+       "contactNote": null,
+       "canChat": true,
+       "seeker": {
+        "id": 2,
+        "name": "Prasina Selvam",
+        "tier": "normal",
+        "city": "Chennai",
+        "about": null,
+        "skills": [
+         "Cooking",
+         "House Help"
+        ],
+        "experienceYears": 3,
+        "details": {},
+        "hasPhoto": false,
+        "verified": true,
+        "phone": null,
+        "email": null
+       },
+       "seen": false
+      }
+     ]
+    }
+   },
+   "/applications/get-job-applicants/1": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": []
+    }
+   },
+   "/applications/get-application/1": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "application": {
+      "id": 1,
+      "status": "shortlisted",
+      "message": "I have done this work for five years and can start tomorrow.",
+      "expectedSalary": 800,
+      "availableFrom": "2026-11-01",
+      "sharePhone": true,
+      "createdAt": "2026-10-06T05:04:05.878400",
+      "job": {
+       "id": 2,
+       "title": "House help for a family of four",
+       "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+       "tier": "normal",
+       "sector": {
+        "id": 2,
+        "name": "House Help",
+        "icon": "cleaning-services",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Adyar",
+       "salaryMin": 9000,
+       "salaryMax": 11000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      "contactStatus": null,
+      "contactNote": null,
+      "canChat": true,
+      "seeker": {
+       "id": 2,
+       "name": "Prasina Selvam",
+       "tier": "normal",
+       "city": "Chennai",
+       "about": null,
+       "skills": [
+        "Cooking",
+        "House Help"
+       ],
+       "experienceYears": 3,
+       "details": {},
+       "hasPhoto": false,
+       "verified": true,
+       "phone": "9876543210",
+       "email": null
+      },
+      "seen": true
+     }
+    }
+   },
+   "/applications/get-application/2": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "application": {
+      "id": 2,
+      "status": "applied",
+      "message": "Looking for a steady job close to home, available mornings.",
+      "expectedSalary": null,
+      "availableFrom": null,
+      "sharePhone": false,
+      "createdAt": "2026-10-06T05:04:05.897601",
+      "job": {
+       "id": 3,
+       "title": "Car driver for office commute",
+       "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+       "tier": "normal",
+       "sector": {
+        "id": 4,
+        "name": "Driving",
+        "icon": "directions-car",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Velachery",
+       "salaryMin": 18000,
+       "salaryMax": 22000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      "contactStatus": null,
+      "contactNote": null,
+      "canChat": true,
+      "seeker": {
+       "id": 2,
+       "name": "Prasina Selvam",
+       "tier": "normal",
+       "city": "Chennai",
+       "about": null,
+       "skills": [
+        "Cooking",
+        "House Help"
+       ],
+       "experienceYears": 3,
+       "details": {},
+       "hasPhoto": false,
+       "verified": true,
+       "phone": null,
+       "email": null
+      },
+      "seen": true
+     }
+    }
+   },
+   "/messages/get-messages/1": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "conversation": {
+      "id": 1,
+      "applicationId": 1,
+      "jobTitle": "House help for a family of four",
+      "otherUser": {
+       "id": 2,
+       "name": "Prasina Selvam",
+       "role": "seeker",
+       "hasPhoto": false
+      },
+      "lastMessage": "Yes sir, I will be there.",
+      "lastMessageAt": "2026-10-06T05:04:06.010348",
+      "unread": 0
+     },
+     "messages": [
+      {
+       "id": 1,
+       "text": "Can you come to the site on Monday at 9?",
+       "mine": true,
+       "createdAt": "2026-10-06T05:04:05.997353"
+      },
+      {
+       "id": 2,
+       "text": "Yes sir, I will be there.",
+       "mine": false,
+       "createdAt": "2026-10-06T05:04:06.010348"
+      }
+     ]
+    }
+   }
+  }
+ },
+ "premiumHirer": {
+  "user": {
+   "id": 5,
+   "name": "Meera Iyer",
+   "email": "hospital@solara.app",
+   "phone": "9876500002",
+   "role": "hirer",
+   "tier": "premium",
+   "status": "active",
+   "onboarded": true,
+   "hasPhoto": false,
+   "city": "Chennai",
+   "about": null,
+   "skills": [],
+   "experienceYears": null,
+   "businessName": "Sunrise Multispeciality Hospital",
+   "details": {
+    "organizationType": "hospital",
+    "designation": "HR Manager",
+    "companySize": "201-1000",
+    "officeAddress": "12 Greams Road, Chennai",
+    "registrationNumber": "TN-HOSP-2041"
+   },
+   "verificationStatus": "verified",
+   "verificationNote": null,
+   "aadhaarLast4": "9090",
+   "hasAadhaar": false,
+   "createdAt": "2026-10-06T05:04:04.682971"
+  },
+  "responses": {
+   "/auth/profile": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 5,
+      "name": "Meera Iyer",
+      "email": "hospital@solara.app",
+      "phone": "9876500002",
+      "role": "hirer",
+      "tier": "premium",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": null,
+      "skills": [],
+      "experienceYears": null,
+      "businessName": "Sunrise Multispeciality Hospital",
+      "details": {
+       "organizationType": "hospital",
+       "designation": "HR Manager",
+       "companySize": "201-1000",
+       "officeAddress": "12 Greams Road, Chennai",
+       "registrationNumber": "TN-HOSP-2041"
+      },
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "9090",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.682971"
+     }
+    }
+   },
+   "/notifications/get-all-notifications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "notifications": [
+      {
+       "id": 6,
+       "title": "New applicant",
+       "body": "Dr. Karthik Raman applied for General Physician (OPD).",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:06.032891"
+      }
+     ],
+     "unread": 1
+    }
+   },
+   "/messages/get-all-conversations": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "conversations": []
+    }
+   },
+   "/support/get-all-faqs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "faqs": [
+      {
+       "id": 1,
+       "question": "Do I have to pay to use Solara?",
+       "answer": "No. Solara is always free for job seekers. Never pay anyone to apply for a job. Report such requests from the job page."
+      },
+      {
+       "id": 2,
+       "question": "What does the \"Verified\" badge mean?",
+       "answer": "The hirer has verified their identity with Aadhaar and our team has reviewed it. You can see the badge on every job they post."
+      },
+      {
+       "id": 3,
+       "question": "Who can see my phone number?",
+       "answer": "Only hirers you apply to, and only if you turn on \"Share my phone number\" for that application. Otherwise they contact you through in-app messages."
+      },
+      {
+       "id": 4,
+       "question": "How is my Aadhaar kept safe?",
+       "answer": "We only ask for the last four digits and a photo for verification. The full number is never shown in the app, and documents can only be opened by our verification team."
+      },
+      {
+       "id": 6,
+       "question": "What is the difference between Normal and Premium?",
+       "answer": "Normal is for daily-wage and household work such as construction, house help and driving: sign-up only needs your photo and Aadhaar. Premium is for professionals such as doctors and engineers, with a detailed profile. Each side only sees its own jobs, and both are free."
+      },
+      {
+       "id": 5,
+       "question": "Why is my job waiting for review?",
+       "answer": "When you suggest a new sector, our team checks it before the job goes live. Jobs in existing sectors are published straight away."
+      }
+     ]
+    }
+   },
+   "/sectors/get-all-sectors": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "sectors": [
+      {
+       "id": 11,
+       "name": "Education",
+       "icon": "school",
+       "tier": "premium",
+       "jobCount": 0
+      },
+      {
+       "id": 9,
+       "name": "Engineering",
+       "icon": "engineering",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 12,
+       "name": "Finance & Accounts",
+       "icon": "account-balance",
+       "tier": "premium",
+       "jobCount": 0
+      },
+      {
+       "id": 8,
+       "name": "Healthcare",
+       "icon": "local-hospital",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 10,
+       "name": "IT & Software",
+       "icon": "computer",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 13,
+       "name": "Legal",
+       "icon": "gavel",
+       "tier": "premium",
+       "jobCount": 0
+      }
+     ]
+    }
+   },
+   "/jobs/get-my-jobs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "jobs": [
+      {
+       "id": 4,
+       "title": "General Physician (OPD)",
+       "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+       "tier": "premium",
+       "sector": {
+        "id": 8,
+        "name": "Healthcare",
+        "icon": "local-hospital",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Greams Road",
+       "salaryMin": 1800000,
+       "salaryMax": 2400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 3,
+       "qualification": "MBBS, MD (General Medicine)",
+       "requiredSkills": [
+        "OPD",
+        "Patient Care",
+        "Diagnosis"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "applicantCount": 1,
+       "newApplicants": 0
+      },
+      {
+       "id": 5,
+       "title": "Biomedical Engineer",
+       "description": "Maintain ICU and theatre equipment, plan preventive maintenance and train staff.",
+       "tier": "premium",
+       "sector": {
+        "id": 9,
+        "name": "Engineering",
+        "icon": "engineering",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 600000,
+       "salaryMax": 900000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 2,
+       "qualification": "B.E. Biomedical Engineering",
+       "requiredSkills": [
+        "Equipment Maintenance",
+        "Calibration"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "applicantCount": 0,
+       "newApplicants": 0
+      },
+      {
+       "id": 6,
+       "title": "Full-stack Developer (Hospital Systems)",
+       "description": "Build and maintain the hospital's patient portal and internal tools.",
+       "tier": "premium",
+       "sector": {
+        "id": 10,
+        "name": "IT & Software",
+        "icon": "computer",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 800000,
+       "salaryMax": 1400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 2,
+       "qualification": "B.E. / B.Tech",
+       "requiredSkills": [
+        "React",
+        "Python",
+        "PostgreSQL"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514",
+       "applicantCount": 0,
+       "newApplicants": 0
+      }
+     ]
+    }
+   },
+   "/applications/get-job-applicants/4": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": [
+      {
+       "id": 3,
+       "status": "shortlisted",
+       "message": "Six years in emergency and general medicine, MD from Chennai.",
+       "expectedSalary": 2200000,
+       "availableFrom": null,
+       "sharePhone": false,
+       "createdAt": "2026-10-06T05:04:06.033906",
+       "job": {
+        "id": 4,
+        "title": "General Physician (OPD)",
+        "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+        "tier": "premium",
+        "sector": {
+         "id": 8,
+         "name": "Healthcare",
+         "icon": "local-hospital",
+         "tier": "premium"
+        },
+        "proposedSector": null,
+        "city": "Chennai",
+        "address": "Greams Road",
+        "salaryMin": 1800000,
+        "salaryMax": 2400000,
+        "salaryPeriod": "year",
+        "shift": "day",
+        "openings": 1,
+        "employmentType": "full_time",
+        "minExperience": 3,
+        "qualification": "MBBS, MD (General Medicine)",
+        "requiredSkills": [
+         "OPD",
+         "Patient Care",
+         "Diagnosis"
+        ],
+        "status": "active",
+        "reviewNote": null,
+        "photos": [],
+        "hirer": {
+         "id": 5,
+         "name": "Meera Iyer",
+         "businessName": "Sunrise Multispeciality Hospital",
+         "verified": true,
+         "organizationType": "hospital"
+        },
+        "createdAt": "2026-10-06T05:04:04.711514"
+       },
+       "contactStatus": "pending",
+       "contactNote": null,
+       "canChat": false,
+       "seeker": {
+        "id": 3,
+        "name": "Dr. Karthik Raman",
+        "tier": "premium",
+        "city": "Chennai",
+        "about": "MBBS, MD with six years in emergency and general medicine.",
+        "skills": [
+         "General Medicine",
+         "Emergency Care"
+        ],
+        "experienceYears": 6,
+        "details": {
+         "profession": "Doctor",
+         "specialization": "General Medicine",
+         "qualification": "MBBS, MD",
+         "institution": "Madras Medical College",
+         "graduationYear": 2016,
+         "licenseNumber": "TNMC 123456",
+         "noticePeriod": "1_month",
+         "languages": [
+          "English",
+          "Tamil",
+          "Hindi"
+         ],
+         "preferredCities": [
+          "Chennai",
+          "Bengaluru"
+         ]
+        },
+        "hasPhoto": false,
+        "verified": true,
+        "phone": null,
+        "email": null
+       },
+       "seen": true
+      }
+     ]
+    }
+   },
+   "/applications/get-job-applicants/5": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": []
+    }
+   },
+   "/applications/get-job-applicants/6": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "applications": []
+    }
+   },
+   "/applications/get-application/3": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "application": {
+      "id": 3,
+      "status": "shortlisted",
+      "message": "Six years in emergency and general medicine, MD from Chennai.",
+      "expectedSalary": 2200000,
+      "availableFrom": null,
+      "sharePhone": false,
+      "createdAt": "2026-10-06T05:04:06.033906",
+      "job": {
+       "id": 4,
+       "title": "General Physician (OPD)",
+       "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+       "tier": "premium",
+       "sector": {
+        "id": 8,
+        "name": "Healthcare",
+        "icon": "local-hospital",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Greams Road",
+       "salaryMin": 1800000,
+       "salaryMax": 2400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 3,
+       "qualification": "MBBS, MD (General Medicine)",
+       "requiredSkills": [
+        "OPD",
+        "Patient Care",
+        "Diagnosis"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      "contactStatus": "pending",
+      "contactNote": null,
+      "canChat": false,
+      "seeker": {
+       "id": 3,
+       "name": "Dr. Karthik Raman",
+       "tier": "premium",
+       "city": "Chennai",
+       "about": "MBBS, MD with six years in emergency and general medicine.",
+       "skills": [
+        "General Medicine",
+        "Emergency Care"
+       ],
+       "experienceYears": 6,
+       "details": {
+        "profession": "Doctor",
+        "specialization": "General Medicine",
+        "qualification": "MBBS, MD",
+        "institution": "Madras Medical College",
+        "graduationYear": 2016,
+        "licenseNumber": "TNMC 123456",
+        "noticePeriod": "1_month",
+        "languages": [
+         "English",
+         "Tamil",
+         "Hindi"
+        ],
+        "preferredCities": [
+         "Chennai",
+         "Bengaluru"
+        ]
+       },
+       "hasPhoto": false,
+       "verified": true,
+       "phone": null,
+       "email": null
+      },
+      "seen": true
+     }
+    }
+   }
+  }
+ },
+ "admin": {
+  "user": {
+   "id": 1,
+   "name": "Solara Owner",
+   "email": "owner@solara.app",
+   "phone": null,
+   "role": "admin",
+   "tier": null,
+   "status": "active",
+   "onboarded": true,
+   "hasPhoto": false,
+   "city": null,
+   "about": null,
+   "skills": [],
+   "experienceYears": null,
+   "businessName": null,
+   "details": {},
+   "verificationStatus": "none",
+   "verificationNote": null,
+   "aadhaarLast4": null,
+   "hasAadhaar": false,
+   "createdAt": "2026-10-06T05:04:04.474982"
+  },
+  "responses": {
+   "/auth/profile": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 1,
+      "name": "Solara Owner",
+      "email": "owner@solara.app",
+      "phone": null,
+      "role": "admin",
+      "tier": null,
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": null,
+      "about": null,
+      "skills": [],
+      "experienceYears": null,
+      "businessName": null,
+      "details": {},
+      "verificationStatus": "none",
+      "verificationNote": null,
+      "aadhaarLast4": null,
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.474982"
+     }
+    }
+   },
+   "/notifications/get-all-notifications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "notifications": [
+      {
+       "id": 10,
+       "title": "Job waiting for review",
+       "body": "\"Gardener for apartment complex\" suggests a new sector: Gardening.",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:06.356457"
+      },
+      {
+       "id": 9,
+       "title": "New verification request",
+       "body": "Lakshmi Traders uploaded Aadhaar.",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:06.332893"
+      },
+      {
+       "id": 8,
+       "title": "Shortlist waiting for approval",
+       "body": "Sunrise Multispeciality Hospital shortlisted Dr. Karthik Raman for General Physician (OPD). Approve to share contact details.",
+       "read": false,
+       "createdAt": "2026-10-06T05:04:06.045920"
+      }
+     ],
+     "unread": 3
+    }
+   },
+   "/support/get-all-faqs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "faqs": [
+      {
+       "id": 1,
+       "question": "Do I have to pay to use Solara?",
+       "answer": "No. Solara is always free for job seekers. Never pay anyone to apply for a job. Report such requests from the job page."
+      },
+      {
+       "id": 2,
+       "question": "What does the \"Verified\" badge mean?",
+       "answer": "The hirer has verified their identity with Aadhaar and our team has reviewed it. You can see the badge on every job they post."
+      },
+      {
+       "id": 3,
+       "question": "Who can see my phone number?",
+       "answer": "Only hirers you apply to, and only if you turn on \"Share my phone number\" for that application. Otherwise they contact you through in-app messages."
+      },
+      {
+       "id": 4,
+       "question": "How is my Aadhaar kept safe?",
+       "answer": "We only ask for the last four digits and a photo for verification. The full number is never shown in the app, and documents can only be opened by our verification team."
+      },
+      {
+       "id": 6,
+       "question": "What is the difference between Normal and Premium?",
+       "answer": "Normal is for daily-wage and household work such as construction, house help and driving: sign-up only needs your photo and Aadhaar. Premium is for professionals such as doctors and engineers, with a detailed profile. Each side only sees its own jobs, and both are free."
+      },
+      {
+       "id": 5,
+       "question": "Why is my job waiting for review?",
+       "answer": "When you suggest a new sector, our team checks it before the job goes live. Jobs in existing sectors are published straight away."
+      }
+     ]
+    }
+   },
+   "/sectors/get-all-sectors": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "sectors": [
+      {
+       "id": 5,
+       "name": "Caretaking",
+       "icon": "elderly",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 1,
+       "name": "Construction",
+       "icon": "construction",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 3,
+       "name": "Cooking",
+       "icon": "restaurant",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 7,
+       "name": "Delivery",
+       "icon": "local-shipping",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 4,
+       "name": "Driving",
+       "icon": "directions-car",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 2,
+       "name": "House Help",
+       "icon": "cleaning-services",
+       "tier": "normal",
+       "jobCount": 1
+      },
+      {
+       "id": 6,
+       "name": "Security",
+       "icon": "security",
+       "tier": "normal",
+       "jobCount": 0
+      },
+      {
+       "id": 11,
+       "name": "Education",
+       "icon": "school",
+       "tier": "premium",
+       "jobCount": 0
+      },
+      {
+       "id": 9,
+       "name": "Engineering",
+       "icon": "engineering",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 12,
+       "name": "Finance & Accounts",
+       "icon": "account-balance",
+       "tier": "premium",
+       "jobCount": 0
+      },
+      {
+       "id": 8,
+       "name": "Healthcare",
+       "icon": "local-hospital",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 10,
+       "name": "IT & Software",
+       "icon": "computer",
+       "tier": "premium",
+       "jobCount": 1
+      },
+      {
+       "id": 13,
+       "name": "Legal",
+       "icon": "gavel",
+       "tier": "premium",
+       "jobCount": 0
+      }
+     ]
+    }
+   },
+   "/admin/get-dashboard-stats": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "stats": {
+      "seekers": 2,
+      "hirers": 3,
+      "activeJobs": 6,
+      "normal": {
+       "seekers": 1,
+       "hirers": 2,
+       "activeJobs": 3
+      },
+      "premium": {
+       "seekers": 1,
+       "hirers": 1,
+       "activeJobs": 3
+      },
+      "pendingJobs": 1,
+      "pendingShortlists": 1,
+      "pendingVerifications": 1,
+      "openReports": 1,
+      "applications": 3
+     }
+    }
+   },
+   "/admin/get-all-users": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "users": [
+      {
+       "id": 6,
+       "name": "Lakshmi Traders",
+       "email": null,
+       "phone": "9123400001",
+       "role": "hirer",
+       "tier": "normal",
+       "status": "active",
+       "onboarded": true,
+       "hasPhoto": true,
+       "city": null,
+       "about": null,
+       "skills": [],
+       "experienceYears": null,
+       "businessName": null,
+       "details": {},
+       "verificationStatus": "pending",
+       "verificationNote": null,
+       "aadhaarLast4": "7788",
+       "hasAadhaar": true,
+       "createdAt": "2026-10-06T05:04:06.318874",
+       "statusReason": null,
+       "hasAadhaarFront": true,
+       "hasAadhaarBack": false
+      },
+      {
+       "id": 4,
+       "name": "Arun Kumar",
+       "email": "hirer@solara.app",
+       "phone": "9876500001",
+       "role": "hirer",
+       "tier": "normal",
+       "status": "active",
+       "onboarded": true,
+       "hasPhoto": false,
+       "city": "Chennai",
+       "about": null,
+       "skills": [],
+       "experienceYears": null,
+       "businessName": "Arun Home Services",
+       "details": {},
+       "verificationStatus": "verified",
+       "verificationNote": null,
+       "aadhaarLast4": "4821",
+       "hasAadhaar": false,
+       "createdAt": "2026-10-06T05:04:04.682971",
+       "statusReason": null,
+       "hasAadhaarFront": false,
+       "hasAadhaarBack": false
+      },
+      {
+       "id": 5,
+       "name": "Meera Iyer",
+       "email": "hospital@solara.app",
+       "phone": "9876500002",
+       "role": "hirer",
+       "tier": "premium",
+       "status": "active",
+       "onboarded": true,
+       "hasPhoto": false,
+       "city": "Chennai",
+       "about": null,
+       "skills": [],
+       "experienceYears": null,
+       "businessName": "Sunrise Multispeciality Hospital",
+       "details": {
+        "organizationType": "hospital",
+        "designation": "HR Manager",
+        "companySize": "201-1000",
+        "officeAddress": "12 Greams Road, Chennai",
+        "registrationNumber": "TN-HOSP-2041"
+       },
+       "verificationStatus": "verified",
+       "verificationNote": null,
+       "aadhaarLast4": "9090",
+       "hasAadhaar": false,
+       "createdAt": "2026-10-06T05:04:04.682971",
+       "statusReason": null,
+       "hasAadhaarFront": false,
+       "hasAadhaarBack": false
+      },
+      {
+       "id": 2,
+       "name": "Prasina Selvam",
+       "email": "seeker@solara.app",
+       "phone": "9876543210",
+       "role": "seeker",
+       "tier": "normal",
+       "status": "active",
+       "onboarded": true,
+       "hasPhoto": false,
+       "city": "Chennai",
+       "about": null,
+       "skills": [
+        "Cooking",
+        "House Help"
+       ],
+       "experienceYears": 3,
+       "businessName": null,
+       "details": {},
+       "verificationStatus": "verified",
+       "verificationNote": null,
+       "aadhaarLast4": "1234",
+       "hasAadhaar": false,
+       "createdAt": "2026-10-06T05:04:04.681975",
+       "statusReason": null,
+       "hasAadhaarFront": false,
+       "hasAadhaarBack": false
+      },
+      {
+       "id": 3,
+       "name": "Dr. Karthik Raman",
+       "email": "doctor@solara.app",
+       "phone": "9876543211",
+       "role": "seeker",
+       "tier": "premium",
+       "status": "active",
+       "onboarded": true,
+       "hasPhoto": false,
+       "city": "Chennai",
+       "about": "MBBS, MD with six years in emergency and general medicine.",
+       "skills": [
+        "General Medicine",
+        "Emergency Care"
+       ],
+       "experienceYears": 6,
+       "businessName": null,
+       "details": {
+        "profession": "Doctor",
+        "specialization": "General Medicine",
+        "qualification": "MBBS, MD",
+        "institution": "Madras Medical College",
+        "graduationYear": 2016,
+        "licenseNumber": "TNMC 123456",
+        "noticePeriod": "1_month",
+        "languages": [
+         "English",
+         "Tamil",
+         "Hindi"
+        ],
+        "preferredCities": [
+         "Chennai",
+         "Bengaluru"
+        ]
+       },
+       "verificationStatus": "verified",
+       "verificationNote": null,
+       "aadhaarLast4": "5678",
+       "hasAadhaar": false,
+       "createdAt": "2026-10-06T05:04:04.681975",
+       "statusReason": null,
+       "hasAadhaarFront": false,
+       "hasAadhaarBack": false
+      }
+     ]
+    }
+   },
+   "/admin/get-pending-verifications": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "users": [
+      {
+       "id": 6,
+       "name": "Lakshmi Traders",
+       "email": null,
+       "phone": "9123400001",
+       "role": "hirer",
+       "tier": "normal",
+       "status": "active",
+       "onboarded": true,
+       "hasPhoto": true,
+       "city": null,
+       "about": null,
+       "skills": [],
+       "experienceYears": null,
+       "businessName": null,
+       "details": {},
+       "verificationStatus": "pending",
+       "verificationNote": null,
+       "aadhaarLast4": "7788",
+       "hasAadhaar": true,
+       "createdAt": "2026-10-06T05:04:06.318874",
+       "statusReason": null,
+       "hasAadhaarFront": true,
+       "hasAadhaarBack": false
+      }
+     ]
+    }
+   },
+   "/admin/get-all-jobs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "jobs": [
+      {
+       "id": 7,
+       "title": "Gardener for apartment complex",
+       "description": "Water plants, trim hedges and keep the lawn tidy every morning.",
+       "tier": "normal",
+       "sector": null,
+       "proposedSector": "Gardening",
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 600,
+       "salaryMax": 700,
+       "salaryPeriod": "day",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "pending_review",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:06.355458"
+      },
+      {
+       "id": 2,
+       "title": "House help for a family of four",
+       "description": "Sweeping, mopping, washing vessels and folding clothes, 9 am to 1 pm.",
+       "tier": "normal",
+       "sector": {
+        "id": 2,
+        "name": "House Help",
+        "icon": "cleaning-services",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Adyar",
+       "salaryMin": 9000,
+       "salaryMax": 11000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      {
+       "id": 3,
+       "title": "Car driver for office commute",
+       "description": "Drive an automatic sedan between Velachery and OMR on weekdays. Valid licence needed.",
+       "tier": "normal",
+       "sector": {
+        "id": 4,
+        "name": "Driving",
+        "icon": "directions-car",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Velachery",
+       "salaryMin": 18000,
+       "salaryMax": 22000,
+       "salaryPeriod": "month",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      {
+       "id": 4,
+       "title": "General Physician (OPD)",
+       "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+       "tier": "premium",
+       "sector": {
+        "id": 8,
+        "name": "Healthcare",
+        "icon": "local-hospital",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Greams Road",
+       "salaryMin": 1800000,
+       "salaryMax": 2400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 3,
+       "qualification": "MBBS, MD (General Medicine)",
+       "requiredSkills": [
+        "OPD",
+        "Patient Care",
+        "Diagnosis"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      {
+       "id": 5,
+       "title": "Biomedical Engineer",
+       "description": "Maintain ICU and theatre equipment, plan preventive maintenance and train staff.",
+       "tier": "premium",
+       "sector": {
+        "id": 9,
+        "name": "Engineering",
+        "icon": "engineering",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 600000,
+       "salaryMax": 900000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 2,
+       "qualification": "B.E. Biomedical Engineering",
+       "requiredSkills": [
+        "Equipment Maintenance",
+        "Calibration"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      {
+       "id": 6,
+       "title": "Full-stack Developer (Hospital Systems)",
+       "description": "Build and maintain the hospital's patient portal and internal tools.",
+       "tier": "premium",
+       "sector": {
+        "id": 10,
+        "name": "IT & Software",
+        "icon": "computer",
+        "tier": "premium"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": null,
+       "salaryMin": 800000,
+       "salaryMax": 1400000,
+       "salaryPeriod": "year",
+       "shift": "day",
+       "openings": 1,
+       "employmentType": "full_time",
+       "minExperience": 2,
+       "qualification": "B.E. / B.Tech",
+       "requiredSkills": [
+        "React",
+        "Python",
+        "PostgreSQL"
+       ],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 5,
+        "name": "Meera Iyer",
+        "businessName": "Sunrise Multispeciality Hospital",
+        "verified": true,
+        "organizationType": "hospital"
+       },
+       "createdAt": "2026-10-06T05:04:04.711514"
+      },
+      {
+       "id": 1,
+       "title": "Mason helper for a house build",
+       "description": "Carry bricks and cement, mix mortar and help the mason. Lunch and tea provided.",
+       "tier": "normal",
+       "sector": {
+        "id": 1,
+        "name": "Construction",
+        "icon": "construction",
+        "tier": "normal"
+       },
+       "proposedSector": null,
+       "city": "Chennai",
+       "address": "Tambaram",
+       "salaryMin": 700,
+       "salaryMax": 850,
+       "salaryPeriod": "day",
+       "shift": "day",
+       "openings": 4,
+       "employmentType": null,
+       "minExperience": null,
+       "qualification": null,
+       "requiredSkills": [],
+       "status": "active",
+       "reviewNote": null,
+       "photos": [],
+       "hirer": {
+        "id": 4,
+        "name": "Arun Kumar",
+        "businessName": "Arun Home Services",
+        "verified": true,
+        "organizationType": null
+       },
+       "createdAt": "2026-10-06T05:04:04.710513"
+      }
+     ]
+    }
+   },
+   "/admin/get-all-reports": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "reports": [
+      {
+       "id": 1,
+       "targetType": "job",
+       "targetId": 3,
+       "reason": "misleading",
+       "details": "Salary is different on the phone.",
+       "status": "open",
+       "note": null,
+       "reporter": {
+        "id": 2,
+        "name": "Prasina Selvam"
+       },
+       "createdAt": "2026-10-06T05:04:06.374488"
+      }
+     ]
+    }
+   },
+   "/admin/get-audit-logs": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "logs": []
+    }
+   },
+   "/admin/get-shortlist-requests": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "requests": [
+      {
+       "id": 3,
+       "status": "shortlisted",
+       "message": "Six years in emergency and general medicine, MD from Chennai.",
+       "expectedSalary": 2200000,
+       "availableFrom": null,
+       "sharePhone": false,
+       "createdAt": "2026-10-06T05:04:06.033906",
+       "job": {
+        "id": 4,
+        "title": "General Physician (OPD)",
+        "description": "Run the general OPD, handle follow-ups and coordinate with specialists. Rotating weekend duty.",
+        "tier": "premium",
+        "sector": {
+         "id": 8,
+         "name": "Healthcare",
+         "icon": "local-hospital",
+         "tier": "premium"
+        },
+        "proposedSector": null,
+        "city": "Chennai",
+        "address": "Greams Road",
+        "salaryMin": 1800000,
+        "salaryMax": 2400000,
+        "salaryPeriod": "year",
+        "shift": "day",
+        "openings": 1,
+        "employmentType": "full_time",
+        "minExperience": 3,
+        "qualification": "MBBS, MD (General Medicine)",
+        "requiredSkills": [
+         "OPD",
+         "Patient Care",
+         "Diagnosis"
+        ],
+        "status": "active",
+        "reviewNote": null,
+        "photos": [],
+        "hirer": {
+         "id": 5,
+         "name": "Meera Iyer",
+         "businessName": "Sunrise Multispeciality Hospital",
+         "verified": true,
+         "organizationType": "hospital"
+        },
+        "createdAt": "2026-10-06T05:04:04.711514"
+       },
+       "contactStatus": "pending",
+       "contactNote": null,
+       "canChat": false,
+       "seeker": {
+        "id": 3,
+        "name": "Dr. Karthik Raman",
+        "tier": "premium",
+        "city": "Chennai",
+        "about": "MBBS, MD with six years in emergency and general medicine.",
+        "skills": [
+         "General Medicine",
+         "Emergency Care"
+        ],
+        "experienceYears": 6,
+        "details": {
+         "profession": "Doctor",
+         "specialization": "General Medicine",
+         "qualification": "MBBS, MD",
+         "institution": "Madras Medical College",
+         "graduationYear": 2016,
+         "licenseNumber": "TNMC 123456",
+         "noticePeriod": "1_month",
+         "languages": [
+          "English",
+          "Tamil",
+          "Hindi"
+         ],
+         "preferredCities": [
+          "Chennai",
+          "Bengaluru"
+         ]
+        },
+        "hasPhoto": false,
+        "verified": true,
+        "phone": null,
+        "email": null
+       },
+       "seen": true
+      }
+     ]
+    }
+   },
+   "/admin/get-user/6": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 6,
+      "name": "Lakshmi Traders",
+      "email": null,
+      "phone": "9123400001",
+      "role": "hirer",
+      "tier": "normal",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": true,
+      "city": null,
+      "about": null,
+      "skills": [],
+      "experienceYears": null,
+      "businessName": null,
+      "details": {},
+      "verificationStatus": "pending",
+      "verificationNote": null,
+      "aadhaarLast4": "7788",
+      "hasAadhaar": true,
+      "createdAt": "2026-10-06T05:04:06.318874",
+      "statusReason": null,
+      "hasAadhaarFront": true,
+      "hasAadhaarBack": false
+     },
+     "stats": {
+      "jobs": 0
+     }
+    }
+   },
+   "/admin/get-user/4": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 4,
+      "name": "Arun Kumar",
+      "email": "hirer@solara.app",
+      "phone": "9876500001",
+      "role": "hirer",
+      "tier": "normal",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": null,
+      "skills": [],
+      "experienceYears": null,
+      "businessName": "Arun Home Services",
+      "details": {},
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "4821",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.682971",
+      "statusReason": null,
+      "hasAadhaarFront": false,
+      "hasAadhaarBack": false
+     },
+     "stats": {
+      "jobs": 4
+     }
+    }
+   },
+   "/admin/get-user/5": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 5,
+      "name": "Meera Iyer",
+      "email": "hospital@solara.app",
+      "phone": "9876500002",
+      "role": "hirer",
+      "tier": "premium",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": null,
+      "skills": [],
+      "experienceYears": null,
+      "businessName": "Sunrise Multispeciality Hospital",
+      "details": {
+       "organizationType": "hospital",
+       "designation": "HR Manager",
+       "companySize": "201-1000",
+       "officeAddress": "12 Greams Road, Chennai",
+       "registrationNumber": "TN-HOSP-2041"
+      },
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "9090",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.682971",
+      "statusReason": null,
+      "hasAadhaarFront": false,
+      "hasAadhaarBack": false
+     },
+     "stats": {
+      "jobs": 3
+     }
+    }
+   },
+   "/admin/get-user/2": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 2,
+      "name": "Prasina Selvam",
+      "email": "seeker@solara.app",
+      "phone": "9876543210",
+      "role": "seeker",
+      "tier": "normal",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": null,
+      "skills": [
+       "Cooking",
+       "House Help"
+      ],
+      "experienceYears": 3,
+      "businessName": null,
+      "details": {},
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "1234",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.681975",
+      "statusReason": null,
+      "hasAadhaarFront": false,
+      "hasAadhaarBack": false
+     },
+     "stats": {
+      "applications": 2
+     }
+    }
+   },
+   "/admin/get-user/3": {
+    "status": 200,
+    "data": {
+     "success": true,
+     "user": {
+      "id": 3,
+      "name": "Dr. Karthik Raman",
+      "email": "doctor@solara.app",
+      "phone": "9876543211",
+      "role": "seeker",
+      "tier": "premium",
+      "status": "active",
+      "onboarded": true,
+      "hasPhoto": false,
+      "city": "Chennai",
+      "about": "MBBS, MD with six years in emergency and general medicine.",
+      "skills": [
+       "General Medicine",
+       "Emergency Care"
+      ],
+      "experienceYears": 6,
+      "businessName": null,
+      "details": {
+       "profession": "Doctor",
+       "specialization": "General Medicine",
+       "qualification": "MBBS, MD",
+       "institution": "Madras Medical College",
+       "graduationYear": 2016,
+       "licenseNumber": "TNMC 123456",
+       "noticePeriod": "1_month",
+       "languages": [
+        "English",
+        "Tamil",
+        "Hindi"
+       ],
+       "preferredCities": [
+        "Chennai",
+        "Bengaluru"
+       ]
+      },
+      "verificationStatus": "verified",
+      "verificationNote": null,
+      "aadhaarLast4": "5678",
+      "hasAadhaar": false,
+      "createdAt": "2026-10-06T05:04:04.681975",
+      "statusReason": null,
+      "hasAadhaarFront": false,
+      "hasAadhaarBack": false
+     },
+     "stats": {
+      "applications": 1
+     }
+    }
+   }
+  }
+ }
+}

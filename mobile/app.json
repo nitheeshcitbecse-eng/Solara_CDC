@@ -1,0 +1,70 @@
+{
+  "expo": {
+    "name": "Solara",
+    "slug": "solara",
+    "scheme": "solara",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icons/icon.png",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#FFF8F1",
+    "ios": {
+      "bundleIdentifier": "app.solara.jobs",
+      "supportsTablet": false,
+      "config": {
+        "usesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "app.solara.jobs",
+      "adaptiveIcon": {
+        "backgroundColor": "#170912",
+        "foregroundImage": "./assets/icons/android-icon-foreground.png",
+        "backgroundImage": "./assets/icons/android-icon-background.png",
+        "monochromeImage": "./assets/icons/android-icon-monochrome.png"
+      },
+      "softwareKeyboardLayoutMode": "resize",
+      "predictiveBackGestureEnabled": false,
+      "blockedPermissions": ["android.permission.RECORD_AUDIO_BACKGROUND"]
+    },
+    "web": {
+      "favicon": "./assets/icons/favicon.png"
+    },
+    "plugins": [
+      "expo-image",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/icons/splash-icon.png",
+          "imageWidth": 160,
+          "resizeMode": "contain",
+          "backgroundColor": "#170912"
+        }
+      ],
+      "expo-font",
+      "expo-localization",
+      "expo-secure-store",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Solara uses the microphone so you can record a short voice introduction for hirers.",
+          "enableBackgroundRecording": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Solara needs your photos to attach workplace pictures and identity documents.",
+          "cameraPermission": "Solara uses the camera to photograph your workplace or identity documents.",
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Solara uses your location to fill in your address and show jobs near you."
+        }
+      ]
+    ]
+  }
+}
