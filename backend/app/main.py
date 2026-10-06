@@ -14,6 +14,7 @@ from app import models  # noqa: F401  (registers the tables)
 from app.config import get_settings
 from app.database import Base, engine, get_db
 from app.services.storage import image_response
+from app.keep_awake import keep_awake
 from app.upgrades import apply_upgrades, import_disk_uploads
 from app.routers import admin, applications, auth, i18n, jobs, messages, onboarding, sectors, support
 
@@ -31,7 +32,8 @@ async def lifespan(_: FastAPI):
         from app.seed import seed
 
         seed()  # sectors + admin, only what is missing
-    yield
+    async with keep_awake():  # on Render's free plan: stop the service from going to sleep
+        yield
 
 
 get_settings()  # fails fast on unsafe production settings

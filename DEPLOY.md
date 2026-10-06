@@ -46,7 +46,14 @@ Demo accounts are **not** created in production. To add them to Neon from your P
    ```
    The build page gives a link / QR code to download the APK.
 
-## Keeping it awake (optional)
+## Keeping it awake
 
-A free monitor such as https://cron-job.org calling `/api/v1/health` every 10 minutes keeps the server from
-sleeping. One always-on service uses ~744 of Render's 750 free hours a month, so do this for one service only.
+Render's free plan puts the backend to sleep after 15 idle minutes (the next visitor waits ~1 minute).
+Two things prevent that, nothing to set up:
+
+- `backend/app/keep_awake.py`: on Render the backend calls its own `/api/v1/health` every 10 minutes.
+- `.github/workflows/keep-awake.yml`: GitHub Actions pings it every 10 minutes too (free for public repos;
+  GitHub pauses scheduled workflows after 60 days without commits; re-enable them under Actions).
+
+One always-on service uses ~744 of Render's 750 free hours a month, so keep only this one service awake.
+Set `KEEP_AWAKE_MINUTES=0` in Render to turn the self-ping off.
