@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Image, StyleSheet, View } from "react-native";
+import { ActivityIndicator, StyleSheet, View } from "react-native";
 import Text from "../../../Components/Text";
 import Screen from "../../../Components/Screen";
 import Card from "../../../Components/Card";
@@ -12,10 +12,9 @@ import EmptyState from "../../../Components/EmptyState";
 import ConfirmModal from "../../../Components/ConfirmModal";
 import Alert from "../../../Components/Alert";
 import api from "../../../api/api";
-import { getToken } from "../../../utils/storage";
 import colors from "../../../colors";
 import { fonts, radius } from "../../../theme";
-import { apiUrl } from "../../../lib/fileUrl";
+import AuthImage from "../../../Components/AuthImage";
 import { formatDate } from "../../../lib/formatTimeStamp";
 import tierTheme from "../../../lib/tierTheme";
 
@@ -35,7 +34,6 @@ export default function UserDetailsScreen({ navigation, route }) {
   const { userId } = route.params;
   const [user, setUser] = useState(null);
   const [stats, setStats] = useState(null);
-  const [token, setToken] = useState(null);
   const [loading, setLoading] = useState(true);
   const [action, setAction] = useState(null);
   const [saving, setSaving] = useState(false);
@@ -51,12 +49,11 @@ export default function UserDetailsScreen({ navigation, route }) {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const [{ data }, storedToken] = await Promise.all([api.get(`/admin/get-user/${userId}`), getToken()]);
+        const { data } = await api.get(`/admin/get-user/${userId}`);
         if (data.success) {
           setUser(data.user);
           setStats(data.stats);
         }
-        setToken(storedToken);
       } catch (err) {
         setMessage(err.response?.data?.message || "Could not load this user");
         console.log("Fetch User Error:", err.message);
@@ -103,7 +100,6 @@ export default function UserDetailsScreen({ navigation, route }) {
   }
 
   const theme = tierTheme(user.tier);
-  const documentSource = (side) => ({ uri: apiUrl(`/admin/get-document/${userId}/${side}`), headers: { Authorization: `Bearer ${token}` } });
   const statusActions = ["active", "suspended", "banned"].filter((status) => status !== user.status);
   const detailEntries = Object.entries(user.details || {});
 
@@ -155,8 +151,8 @@ export default function UserDetailsScreen({ navigation, route }) {
         <Card title="Aadhaar" right={<StatusBadge status={user.verificationStatus} />}>
           <InfoRow icon="badge" label="Last 4 digits" text={user.aadhaarLast4 || "Not given"} />
           {user.verificationNote ? <InfoRow icon="info-outline" label="Note" text={user.verificationNote} /> : null}
-          {user.hasAadhaarFront && token ? <Image source={documentSource("front")} style={styles.document} resizeMode="contain" /> : null}
-          {user.hasAadhaarBack && token ? <Image source={documentSource("back")} style={styles.document} resizeMode="contain" /> : null}
+          {user.hasAadhaarFront ? <AuthImage path={`/admin/get-document/${userId}/front`} style={styles.document} /> : null}
+          {user.hasAadhaarBack ? <AuthImage path={`/admin/get-document/${userId}/back`} style={styles.document} /> : null}
           {user.verificationStatus === "pending" ? (
             <View style={styles.actions}>
               <Button title="Reject" icon="close" variant="danger" size="md" onPress={() => setAction("rejected")} style={{ flex: 1 }} />

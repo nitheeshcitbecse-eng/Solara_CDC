@@ -1,45 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Text from "./Text";
 import colors from "../colors";
 import { fonts } from "../theme";
-import { apiUrl } from "../lib/fileUrl";
-import { getToken } from "../utils/storage";
+import useAuthImage from "../lib/useAuthImage";
 
-// Shows a user's profile photo (fetched with the login token) or their initial.
+// Shows a user's profile photo (downloaded with the login token, see lib/useAuthImage) or their initial.
 // Pass `version` to force a reload after the photo changes.
 export default function Avatar({ userId, name, hasPhoto, size = 64, color = colors.primary, background = colors.onPrimarySoft, version }) {
-  const [token, setToken] = useState(null);
-  const [failed, setFailed] = useState(false);
-
-  useEffect(() => {
-    let active = true;
-    if (hasPhoto) {
-      getToken().then((value) => {
-        if (active) setToken(value);
-      });
-    }
-    setFailed(false);
-    return () => {
-      active = false;
-    };
-  }, [hasPhoto, userId, version]);
-
+  const { uri } = useAuthImage(`/users/get-photo/${userId}${version ? `?v=${version}` : ""}`, Boolean(hasPhoto && userId));
   const box = { width: size, height: size, borderRadius: size / 2 };
 
-  if (hasPhoto && token && !failed) {
-    return (
-      <Image
-        source={{ uri: apiUrl(`/users/get-photo/${userId}${version ? `?v=${version}` : ""}`), headers: { Authorization: `Bearer ${token}` } }}
-        style={[box, styles.photo]}
-        onError={() => setFailed(true)}
-      />
-    );
+  if (uri) {
+    return <Image source={{ uri }} style={[box, styles.photo]} />;
   }
 
   return (
     <View style={[box, styles.fallback, { backgroundColor: background }]}>
-      <Text style={[styles.initial, { color, fontSize: size * 0.42 }]}>{(name || "?").charAt(0).toUpperCase()}</Text>
+      <Text translate={false} style={[styles.initial, { color, fontSize: size * 0.42 }]}>{(name || "?").charAt(0).toUpperCase()}</Text>
     </View>
   );
 }
