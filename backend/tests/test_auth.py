@@ -141,3 +141,21 @@ def test_premium_details_are_validated_and_merged(client):
 
     bad = client.put(f"{API}/auth/update-profile", headers=headers, json={"details": {"noticePeriod": "forever"}})
     assert bad.status_code == 422
+
+
+def test_login_lasts_six_months_unless_ended(client):
+    import time
+
+    import jwt as pyjwt
+
+    from app.config import get_settings
+
+    token = client.post(f"{API}/auth/login", json={"identifier": "seeker@solara.app", "password": "Demo@1234"}).json()["token"]
+    claims = pyjwt.decode(token, get_settings().jwt_secret, algorithms=["HS256"])
+    days_left = (claims["exp"] - time.time()) / 86400
+    assert 179.9 < days_left <= 180
+
+    # Logging out still ends it at once.
+    headers = {"Authorization": f"Bearer {token}"}
+    client.post(f"{API}/auth/logout", headers=headers)
+    assert client.get(f"{API}/auth/profile", headers=headers).status_code == 401

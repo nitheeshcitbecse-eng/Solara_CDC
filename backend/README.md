@@ -117,7 +117,7 @@ without one must add an email in their profile first.
 
 ## Security notes
 
-- Passwords: bcrypt. Tokens: JWT (7 days) carrying a `token_version`; logout, password change/reset and bans
+- Passwords: bcrypt. Tokens: JWT (180 days, `JWT_EXPIRE_DAYS`) carrying a `token_version`; logout, password change/reset and bans
   bump the version, which invalidates every older token.
 - Reset codes: 6 digits, stored as an HMAC, 10-minute expiry, 5 attempts, 3 sends per 15 minutes; the endpoint
   answers the same way whether or not the email exists.

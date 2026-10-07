@@ -19,6 +19,8 @@ services:
         value: "true"
       - key: DATABASE_URL           # Neon connection string (postgresql://…?sslmode=require)
         sync: false
+      - key: JWT_EXPIRE_DAYS        # logins last about 6 months
+        value: "180"
       - key: JWT_SECRET
         generateValue: true
       - key: ADMIN_EMAIL

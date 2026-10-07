@@ -18,7 +18,8 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://postgres:postgres@localhost:5432/SOLARA"
 
     jwt_secret: str = "change-me-in-env"
-    jwt_expire_days: int = 7
+    # How long a login lasts. Logout, a password change or a ban still ends it at once (token_version).
+    jwt_expire_days: int = 180
 
     upload_dir: Path = BASE_DIR / "uploads"
     max_upload_mb: int = 8
